@@ -1,0 +1,19 @@
+{
+  "name": "todo-graphql-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "json-graphql-server db.js"
+  },
+  "keywords": [],
+  "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com> (https://glebbahmutov.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "json-graphql-server": "2.1.3"
+  },
+  "devDependencies": {
+    "prettier": "1.15.3"
+  }
+}
