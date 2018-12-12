@@ -13,7 +13,10 @@
   "license": "ISC",
   "dependencies": {
     "apollo-boost": "0.1.22",
-    "json-graphql-server": "2.1.3"
+    "json-graphql-server": "2.1.3",
+    "react": "16.6.3",
+    "react-apollo": "2.3.2",
+    "react-dom": "16.6.3"
   },
   "devDependencies": {
     "parcel-bundler": "1.10.3",
