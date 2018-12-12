@@ -85,4 +85,4 @@ Response
 
 ## Development
 
-Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server)
+Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server). Front-end React code is in [src](src) folder.
