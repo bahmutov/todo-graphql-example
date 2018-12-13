@@ -1,7 +1,8 @@
 import ApolloClient from 'apollo-boost'
 import React from 'react'
 import { ApolloProvider } from 'react-apollo'
-import Todos from './Todos'
+import Header from './containers/Header'
+import MainSection from './containers/MainSection'
 
 const client = new ApolloClient({
   uri: 'http://localhost:3000'
@@ -10,8 +11,8 @@ const client = new ApolloClient({
 const App = () => (
   <ApolloProvider client={client}>
     <div>
-      <h2>My first Apollo app</h2>
-      <Todos />
+      <Header />
+      <MainSection />
     </div>
   </ApolloProvider>
 )
