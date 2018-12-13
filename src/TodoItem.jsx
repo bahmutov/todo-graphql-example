@@ -1,7 +1,11 @@
 import React from 'react'
 const TodoItem = props => (
-  <div>
-    <p>{`${props.todo.title}`}</p>
-  </div>
+  <li className=''>
+    <div className='view'>
+      <input type='checkbox' className='toggle' value='on' />
+      <label>{`${props.todo.title}`}</label>
+      <button className='destroy' />
+    </div>
+  </li>
 )
 export default TodoItem
