@@ -1,4 +1,4 @@
-# todo-graphql-example
+# todo-graphql-example [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example)
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
 
