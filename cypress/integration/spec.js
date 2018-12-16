@@ -11,12 +11,7 @@ it('shows loading message', () => {
     url: 'http://localhost:3000/',
     delay: 1000,
     status: 200,
-    response: {
-      errors: [],
-      data: {
-        allTodos: []
-      }
-    }
+    response: 'fixture:empty-list-no-errors'
   })
 
   cy.visit('/', {
