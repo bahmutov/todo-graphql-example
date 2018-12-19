@@ -19,16 +19,16 @@ beforeEach(() => {
   })
 })
 
-it('in browser fetch mock', () => {
-  cy.get('.todo-list li').should('have.length', 2)
-})
-
 it('adds an item', () => {
   cy.get('.todo-list li').should('have.length', 2)
   cy.get('.new-todo').type('new todo{enter}')
   cy.get('.todo-list li')
     .should('have.length', 3)
     .contains('new todo')
+})
+
+it('in browser fetch mock', () => {
+  cy.get('.todo-list li').should('have.length', 2)
 })
 
 it('tracks number of GraphQL calls', () => {
@@ -97,6 +97,9 @@ it('uses expected GraphQL operations', () => {
   cy.get('.todo-list li')
     .should('have.length', 3)
     .contains('new todo')
+
+  // nthGraphQL is helper function that gets
+  // a specific fetch call to GraphQL endpoint
 
   // addTodo mutation call
   nthGraphQL(-2).should('deep.equal', {
