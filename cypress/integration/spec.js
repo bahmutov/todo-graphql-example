@@ -24,3 +24,17 @@ it('shows loading message', () => {
   // and then it should disappear from the DOM
   cy.contains('.main', 'Loading...').should('not.exist')
 })
+
+it.only('adds new item', () => {
+  cy.mockGraphql({
+    // ? what is the schema?
+  })
+
+  // now need to mock GraphQL operations
+  // cy.mockGraphqlOps({
+  //   operations: {
+  //     allTodos: []
+  //   }
+  // })
+  cy.visit('/')
+})
