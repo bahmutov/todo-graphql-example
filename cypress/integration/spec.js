@@ -9,7 +9,9 @@ let fetches
 beforeEach(() => {
   cy.visit('/', {
     onBeforeLoad (win) {
-      const server = JsonGraphqlServer({ data })
+      // avoid mutating global data singleton
+      const copied = Cypress._.cloneDeep(data)
+      const server = JsonGraphqlServer({ data: copied })
       fetches = win.fetch = fetchMock.sandbox()
       // all GraphQL queries go to this endpoint
       win.fetch.post('http://localhost:3000/', server.getHandler())
