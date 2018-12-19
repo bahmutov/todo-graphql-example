@@ -3,23 +3,23 @@ import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 
+function randomId () {
+  return Number(
+    Math.random()
+      .toString()
+      .substr(2, 10)
+  )
+}
+
 const ADD_TODO = gql`
   mutation AddTodo($id: ID!, $title: String!) {
-    createTodo(id: $id, title: $title) {
+    createTodo(id: $id, title: $title, completed: false) {
       id
     }
   }
 `
 
 export default class TodoTextInput extends Component {
-  // static propTypes = {
-  //   onSave: PropTypes.func.isRequired,
-  //   text: PropTypes.string,
-  //   placeholder: PropTypes.string,
-  //   editing: PropTypes.bool,
-  //   newTodo: PropTypes.bool
-  // }
-
   constructor (props) {
     super(props)
     this.state = {
@@ -33,9 +33,8 @@ export default class TodoTextInput extends Component {
       // this.props.onSave(text)
       addTodo({
         variables: {
-          id: 1,
-          title: text,
-          completed: false
+          id: randomId(),
+          title: text
         }
       })
       if (this.props.newTodo) {
@@ -57,7 +56,7 @@ export default class TodoTextInput extends Component {
   render () {
     return (
       <Mutation mutation={ADD_TODO}>
-        {(addTodo, { data }) => (
+        {addTodo => (
           <input
             className={classnames({
               edit: this.props.editing,
