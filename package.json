@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "cypress": "3.1.3",
+    "cypress-graphql-mock": "0.1.1",
     "parcel-bundler": "1.10.3",
     "prettier": "1.15.3"
   }
