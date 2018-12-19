@@ -46,6 +46,9 @@ it('tracks number of GraphQL calls', () => {
     })
 })
 
+/**
+ * Parses array returned by "fetch-mock" to get GraphQL information
+ */
 const extractGraphQL = call => {
   // only interested in request body from [url, body] arguments
   const [, request] = call
