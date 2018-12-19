@@ -110,3 +110,26 @@ it('uses expected GraphQL operations', () => {
     variables: {}
   })
 })
+
+it('shows new item after reload', () => {
+  // starts with new item
+  cy.get('.todo-list li').should('have.length', 2)
+  cy.get('.new-todo').type('new todo{enter}')
+
+  // now has 3 items
+  cy.get('.todo-list li')
+    .should('have.length', 3)
+    .contains('new todo')
+
+  // shows 3 items after the user reloads the page?
+
+  // currently deletes the window.fetch mock
+  // so we need to set it again before the window loads
+  cy.on('window:before:load', win => {
+    // fetches was created in `cy.visit` callback
+    win.fetch = fetches
+  })
+  cy.reload()
+  // still 3 items after page reload
+  cy.get('.todo-list li').should('have.length', 3)
+})

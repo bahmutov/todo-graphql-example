@@ -23,3 +23,13 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// Cypress.Commands.overwrite('reload', (reload, url, options) => {
+//   debugger
+//   var w1 = cy.state('window')
+//   reload(url, options).then(() => {
+//     debugger
+//     var w2 = cy.state('window')
+//     console.log('w1 == w2', w1 === w2)
+//   })
+// })
