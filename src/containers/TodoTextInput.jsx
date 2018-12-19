@@ -2,6 +2,7 @@ import classnames from 'classnames'
 import gql from 'graphql-tag'
 import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
+import { ALL_TODOS } from '../Todos'
 
 function randomId () {
   return Number(
@@ -30,7 +31,7 @@ export default class TodoTextInput extends Component {
   handleSubmit (addTodo, e) {
     const text = e.target.value.trim()
     if (e.which === 13) {
-      // this.props.onSave(text)
+      debugger
       addTodo({
         variables: {
           id: randomId(),
@@ -55,7 +56,7 @@ export default class TodoTextInput extends Component {
 
   render () {
     return (
-      <Mutation mutation={ADD_TODO}>
+      <Mutation mutation={ADD_TODO} refetchQueries={[{ query: ALL_TODOS }]}>
         {addTodo => (
           <input
             className={classnames({
