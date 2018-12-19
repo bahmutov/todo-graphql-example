@@ -31,7 +31,6 @@ export default class TodoTextInput extends Component {
   handleSubmit (addTodo, e) {
     const text = e.target.value.trim()
     if (e.which === 13) {
-      debugger
       addTodo({
         variables: {
           id: randomId(),
