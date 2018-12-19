@@ -5,5 +5,7 @@ workflows:
   build:
     jobs:
       - cypress/run:
-          start: npm run server
+          # only start the web application
+          # since it uses in-browser GraphQL server mock
+          start: npm run app
           wait-on: http://localhost:1234
