@@ -3,18 +3,18 @@ import React from 'react'
 import { Query } from 'react-apollo'
 import TodoItem from './TodoItem'
 
+export const ALL_TODOS = gql`
+  query allTodos {
+    allTodos {
+      id
+      title
+      completed
+    }
+  }
+`
+
 const Todos = () => (
-  <Query
-    query={gql`
-      {
-        allTodos {
-          id
-          title
-          completed
-        }
-      }
-    `}
-  >
+  <Query query={ALL_TODOS}>
     {({ loading, error, data }) => {
       if (loading) return <p>Loading...</p>
       if (error) return <p>Error :(</p>
