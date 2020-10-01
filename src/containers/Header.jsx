@@ -11,7 +11,7 @@ const Header = ({ addTodo }) => (
           // simulate delayed application logic
           // setTimeout(addTodo, 1000, text)
           // addTodo(text)
-          console.log(text)
+          console.log('on Save', text)
         }
       }}
       placeholder='What needs to be done?'

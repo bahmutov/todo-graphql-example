@@ -30,6 +30,10 @@ export default class TodoTextInput extends Component {
 
   handleSubmit (addTodo, e) {
     const text = e.target.value.trim()
+    if (text === '') {
+      return
+    }
+
     if (e.which === 13) {
       addTodo({
         variables: {
