@@ -6,7 +6,9 @@
   "scripts": {
     "start": "json-graphql-server db.js",
     "app": "parcel serve src/index.html",
-    "server": "npm start & npm run app"
+    "server": "npm start & npm run app",
+    "dev": "start-test server 1234 cy:open",
+    "cy:open": "cypress open"
   },
   "keywords": [],
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com> (https://glebbahmutov.com/)",

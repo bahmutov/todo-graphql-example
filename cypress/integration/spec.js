@@ -1,6 +1,10 @@
 /// <reference types="cypress" />
 import fetchMock from 'fetch-mock'
 import JsonGraphqlServer from 'json-graphql-server'
+
+describe('using json-graphql-server', () => {
+
+
 // load JSON for GraphQL server
 const data = require('../../db')
 
@@ -138,4 +142,5 @@ it('shows new item after reload', () => {
   cy.reload()
   // still 3 items after page reload
   cy.get('.todo-list li').should('have.length', 3)
+})
 })
