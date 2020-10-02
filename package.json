@@ -1,8 +1,9 @@
 {
   "name": "todo-graphql-example",
   "version": "1.0.0",
-  "description": "",
+  "description": "TodoMVC with local GraphQL backend",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "start": "json-graphql-server db.js",
     "app": "parcel serve src/index.html",

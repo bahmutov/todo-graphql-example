@@ -1,4 +1,4 @@
-# todo-graphql-example [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example)
+# todo-graphql-example [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example) [![renovate-app badge][renovate-badge]][renovate-app]
 
 ## App
 
@@ -94,3 +94,6 @@ Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server
 By mocking it using `json-graphql-server` completely: see [cypress/integration/spec.js](cypress/integration/spec.js) file.
 
 By mocking network calls using [cy.route2](https://on.cypress.io/route2) see [cypress/integration/route2-spec.js](cypress/integration/route2-spec.js)
+
+[renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
+[renovate-app]: https://renovateapp.com/
