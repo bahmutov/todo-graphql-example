@@ -1,7 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
-// import gql from 'graphql-tag'
 import React from 'react'
-// import { Query } from 'react-apollo'
 import TodoItem from './TodoItem'
 
 export const ALL_TODOS = gql`
@@ -16,8 +14,6 @@ export const ALL_TODOS = gql`
 
 const Todos = () => {
   const { loading, error, data } = useQuery(ALL_TODOS)
-  // <Query query={ALL_TODOS}>
-  // {({ loading, error, data }) => {
   if (loading)
     return (
       <div className="todos-container">
@@ -32,9 +28,6 @@ const Todos = () => {
       ))}
     </ul>
   )
-  // }}
-  // </Query>
-  // )
 }
 
 export default Todos

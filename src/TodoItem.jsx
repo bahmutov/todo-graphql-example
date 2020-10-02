@@ -1,8 +1,7 @@
 import React from 'react'
-// import gql from 'graphql-tag'
-// import { Mutation } from 'react-apollo'
 import { useMutation, gql } from '@apollo/client'
 import { ALL_TODOS } from './Todos'
+import classNames from 'classnames'
 
 const DELETE_TODO = gql`
   mutation DeleteTodo($id: ID!) {
@@ -11,31 +10,42 @@ const DELETE_TODO = gql`
 `
 
 const TOGGLE_TODO = gql`
-  mutation ToggleTodo($id: ID!) {
-    toggleTodo(id: $id)
+  mutation updateTodo($id: ID!, $completed: Boolean!) {
+    # operation name
+    updateTodo(id: $id, completed: $completed) {
+      # return fields
+      id
+      title
+      completed
+    }
   }
 `
 
 const TodoItem = (props) => {
-  const completeTodo = (id) => {
-    console.log('TODO: complete todo %s', id)
-  }
-
   const [deleteTodo, { data }] = useMutation(DELETE_TODO, {
     refetchQueries: [{ query: ALL_TODOS }],
   })
 
-  // return (
-  // <Mutation mutation={DELETE_TODO} refetchQueries={[{ query: ALL_TODOS }]}>
-  // {(deleteTodo) => (
+  const [completeTodo, { data2 }] = useMutation(TOGGLE_TODO, {
+    refetchQueries: [{ query: ALL_TODOS }],
+    variables: {
+      id: props.todo.id,
+      completed: !props.todo.completed,
+    },
+  })
+
+  const names = classNames({
+    todo: true,
+    completed: props.todo.completed,
+  })
   return (
-    <li className={props.todo.completed ? 'completed' : ''}>
+    <li className={names}>
       <div className="view">
         <input
           type="checkbox"
           className="toggle"
           checked={props.todo.completed}
-          onChange={() => completeTodo(todo.id)}
+          onChange={() => completeTodo(props.todo.id)}
         />
         <label>{`${props.todo.title}`}</label>
         <button
@@ -51,8 +61,5 @@ const TodoItem = (props) => {
       </div>
     </li>
   )
-  // )}
-  // </Mutation>
-  // )
 }
 export default TodoItem
