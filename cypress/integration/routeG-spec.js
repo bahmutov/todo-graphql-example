@@ -34,10 +34,11 @@ describe('TodoMVC with GraphQL routeG', () => {
   it('stubs all todos (simpler)', () => {
     routeG(
       {
-        // operation name matches "allTodos" variable name in this case
-        // so stub any call to "operation: allTodos" with this response
+        // stub any call to "operation: allTodos" with this response
         // that will be placed into "body: data: {...}"
-        allTodos,
+        allTodos: {
+          allTodos,
+        },
       },
       {
         headers: {
@@ -47,6 +48,46 @@ describe('TodoMVC with GraphQL routeG', () => {
     )
     cy.visit('/')
     cy.get('.todo-list li').should('have.length', allTodos.length)
+  })
+
+  it('adds todo with stubbed addTodo call', () => {
+    // add a new todo via UI
+    // but check if the right request goes out
+    cy.visit('/')
+    // make sure the server responds
+    cy.get('.loading').should('not.exist')
+
+    // prevent an actual AddTodo mutation from going to the server
+    const { requests } = routeG(
+      {
+        AddTodo: {
+          createTodo: {
+            id: '321',
+            __typename: 'Todo',
+          },
+        },
+      },
+      {
+        headers: {
+          'access-control-allow-origin': '*',
+        },
+      },
+    )
+
+    cy.window()
+      .its('Math')
+      .then((Math) => {
+        // always return the same ID
+        cy.stub(Math, 'random').returns('0.321')
+      })
+
+    const randomTitle = `Delete me ${Cypress._.random(1e4)}`
+    cy.get('.new-todo').type(`${randomTitle}{enter}`)
+    cy.log('Confirm **AddTodo** was called')
+    cy.wrap(requests).its('AddTodo.0.variables').should('deep.equal', {
+      id: 321,
+      title: randomTitle,
+    })
   })
 
   it('adds and deletes todo', () => {

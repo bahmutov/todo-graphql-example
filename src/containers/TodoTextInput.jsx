@@ -4,12 +4,12 @@ import React, { Component } from 'react'
 import { Mutation } from 'react-apollo'
 import { ALL_TODOS } from '../Todos'
 
-function randomId () {
-  return Number(
-    Math.random()
-      .toString()
-      .substr(2, 10)
-  )
+/**
+ * Creates an ID for new todo item
+ * using Math.random() to be sent to the server
+ */
+function randomId() {
+  return Number(Math.random().toString().substr(2, 10))
 }
 
 const ADD_TODO = gql`
@@ -21,14 +21,14 @@ const ADD_TODO = gql`
 `
 
 export default class TodoTextInput extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
-      text: this.props.text || ''
+      text: this.props.text || '',
     }
   }
 
-  handleSubmit (addTodo, e) {
+  handleSubmit(addTodo, e) {
     const text = e.target.value.trim()
     if (text === '') {
       return
@@ -38,8 +38,8 @@ export default class TodoTextInput extends Component {
       addTodo({
         variables: {
           id: randomId(),
-          title: text
-        }
+          title: text,
+        },
       })
       if (this.props.newTodo) {
         this.setState({ text: '' })
@@ -47,26 +47,26 @@ export default class TodoTextInput extends Component {
     }
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({ text: e.target.value })
   }
 
-  handleBlur (e) {
+  handleBlur(e) {
     if (!this.props.newTodo) {
       this.props.onSave(e.target.value)
     }
   }
 
-  render () {
+  render() {
     return (
       <Mutation mutation={ADD_TODO} refetchQueries={[{ query: ALL_TODOS }]}>
-        {addTodo => (
+        {(addTodo) => (
           <input
             className={classnames({
               edit: this.props.editing,
-              'new-todo': this.props.newTodo
+              'new-todo': this.props.newTodo,
             })}
-            type='text'
+            type="text"
             placeholder={this.props.placeholder}
             autoFocus
             value={this.state.text}

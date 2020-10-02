@@ -9,6 +9,7 @@
  * - making stubbing responses really easy
  * - record requests automatically
  * - provide a way to record responses
+ * - [ ] add option to pass unstubbed requests to the server
  *
  * Note: only call this once per test
  */
@@ -45,9 +46,7 @@ export const routeG = (operations, options = {}) => {
         return req.reply({
           ...options,
           body: {
-            data: {
-              [body.operationName]: operationHandler,
-            },
+            data: operationHandler,
           },
         })
       }
