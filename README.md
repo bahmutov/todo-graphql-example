@@ -95,5 +95,7 @@ By mocking it using `json-graphql-server` completely: see [cypress/integration/s
 
 By mocking network calls using [cy.route2](https://on.cypress.io/route2) see [cypress/integration/route2-spec.js](cypress/integration/route2-spec.js)
 
+By mocking network calls using `routeG` see [cypress/integration/routeG-spec.js](cypress/integration/routeG-spec.js)
+
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/

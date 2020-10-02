@@ -1,4 +1,5 @@
 {
   "baseUrl": "http://localhost:1234",
-  "experimentalNetworkStubbing": true
+  "experimentalNetworkStubbing": true,
+  "testFiles": "**/*spec.*"
 }
