@@ -11,7 +11,7 @@ describe('TodoMVC with GraphQL', () => {
     },
   ]
 
-  it('loads todos', () => {
+  it('stubs todos query', () => {
     // stub ALL GraphQL calls the same way
     cy.route2(
       {
@@ -29,9 +29,27 @@ describe('TodoMVC with GraphQL', () => {
         },
       },
     ).as('allTodos')
+
     cy.visit('/')
     cy.wait('@allTodos')
-    cy.get('.todo-list li').should('have.length', 2)
+    cy.get('.todo-list li')
+      .should('have.length', 2)
+      .then(() => {
+        // check that UI correctly reflects the mocked data
+        allTodos.forEach((todo) => {
+          if (todo.completed) {
+            cy.contains('.todo-list li', todo.title).should(
+              'have.class',
+              'completed',
+            )
+          } else {
+            cy.contains('.todo-list li', todo.title).should(
+              'not.have.class',
+              'completed',
+            )
+          }
+        })
+      })
   })
 
   it('stubs by checking operation name', () => {
