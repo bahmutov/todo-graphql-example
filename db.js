@@ -1,14 +1,14 @@
 module.exports = {
   todos: [
     {
-      id: 1,
+      id: '1',
       title: 'use GraphQL',
-      completed: false
+      completed: false,
     },
     {
-      id: 2,
+      id: '2',
       title: 'write React frontend',
-      completed: false
-    }
-  ]
+      completed: false,
+    },
+  ],
 }

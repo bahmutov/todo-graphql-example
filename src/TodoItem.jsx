@@ -9,6 +9,12 @@ const DELETE_TODO = gql`
   }
 `
 
+const TOGGLE_TODO = gql`
+  mutation ToggleTodo($id: ID!) {
+    toggleTodo(id: $id)
+  }
+`
+
 const TodoItem = (props) => {
   const completeTodo = (id) => {
     console.log('TODO: complete todo %s', id)

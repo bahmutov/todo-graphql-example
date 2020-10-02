@@ -97,5 +97,7 @@ By mocking network calls using [cy.route2](https://on.cypress.io/route2) see [cy
 
 By mocking network calls using `routeG` see [cypress/integration/routeG-spec.js](cypress/integration/routeG-spec.js)
 
+Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client
+
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
