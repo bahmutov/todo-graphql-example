@@ -1,8 +1,6 @@
-import classnames from 'classnames'
-import gql from 'graphql-tag'
 import React, { Component } from 'react'
-import { Mutation } from 'react-apollo'
 import { ALL_TODOS } from '../Todos'
+import { useMutation, gql } from '@apollo/client'
 
 /**
  * Creates an ID for new todo item
@@ -20,62 +18,26 @@ const ADD_TODO = gql`
   }
 `
 
-export default class TodoTextInput extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      text: this.props.text || '',
-    }
-  }
+export default function TodoTextInput() {
+  let input
+  const [addTodo, { data }] = useMutation(ADD_TODO, {
+    refetchQueries: [{ query: ALL_TODOS }],
+  })
 
-  handleSubmit(addTodo, e) {
-    const text = e.target.value.trim()
-    if (text === '') {
-      return
-    }
-
-    if (e.which === 13) {
-      addTodo({
-        variables: {
-          id: randomId(),
-          title: text,
-        },
-      })
-      if (this.props.newTodo) {
-        this.setState({ text: '' })
-      }
-    }
-  }
-
-  handleChange(e) {
-    this.setState({ text: e.target.value })
-  }
-
-  handleBlur(e) {
-    if (!this.props.newTodo) {
-      this.props.onSave(e.target.value)
-    }
-  }
-
-  render() {
-    return (
-      <Mutation mutation={ADD_TODO} refetchQueries={[{ query: ALL_TODOS }]}>
-        {(addTodo) => (
-          <input
-            className={classnames({
-              edit: this.props.editing,
-              'new-todo': this.props.newTodo,
-            })}
-            type="text"
-            placeholder={this.props.placeholder}
-            autoFocus
-            value={this.state.text}
-            onBlur={this.handleBlur.bind(this)}
-            onChange={this.handleChange.bind(this)}
-            onKeyDown={this.handleSubmit.bind(this, addTodo)}
-          />
-        )}
-      </Mutation>
-    )
-  }
+  return (
+    <form
+      onSubmit={(e) => {
+        e.preventDefault()
+        addTodo({ variables: { title: input.value, id: randomId() } })
+        input.value = ''
+      }}
+    >
+      <input
+        className="new-todo"
+        ref={(node) => {
+          input = node
+        }}
+      />
+    </form>
+  )
 }
