@@ -232,4 +232,44 @@ describe('TodoMVC with GraphQL routeG', () => {
         })
       })
   })
+
+  it('completes first todo', () => {
+    const routeG = initRouteG({
+      headers: {
+        'access-control-allow-origin': '*',
+      },
+    })
+
+    expect(allTodos[0].completed, 'first todo is not done yet').to.be.false
+
+    const { requests } = routeG({
+      // when application loads the list, reply with the initial list
+      allTodos: {
+        allTodos,
+      },
+      // when the app tries to update a todo
+      // stub the call so it does not go to the server
+      updateTodo: {},
+    })
+    cy.visit('/')
+    cy.get('.todo-list li')
+      .should('have.length', allTodos.length)
+      .first()
+      .should('not.have.class', 'completed')
+      // complete todo using UI
+      .find('.toggle')
+      .click()
+
+    // check the update call to the server
+    cy.log('check call **updateTodo**')
+    cy.wrap(requests)
+      .its('updateTodo.0')
+      .should('deep.contain', {
+        operationName: 'updateTodo',
+        variables: {
+          id: '1',
+          completed: true,
+        },
+      })
+  })
 })
