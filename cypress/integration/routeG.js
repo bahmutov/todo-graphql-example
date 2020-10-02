@@ -63,3 +63,14 @@ export const routeG = (operations, options = {}) => {
   }
   return { requests, responses, saveResponse }
 }
+
+/**
+ * If every routeG call uses the same options,
+ * this wrapper allows you to create custom routeG call
+ */
+export const initRouteG = (options = {}) => {
+  return function customRouteG(operations, customOptions) {
+    const mergedOptions = { ...options, ...customOptions }
+    return routeG(operations, mergedOptions)
+  }
+}

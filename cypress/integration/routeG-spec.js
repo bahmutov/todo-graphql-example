@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { routeG } from './routeG'
+import { routeG, initRouteG } from './routeG'
 
 describe('TodoMVC with GraphQL routeG', () => {
   const allTodos = [
@@ -46,6 +46,23 @@ describe('TodoMVC with GraphQL routeG', () => {
         },
       },
     )
+    cy.visit('/')
+    cy.get('.todo-list li').should('have.length', allTodos.length)
+  })
+
+  it('stubs all todos (best)', () => {
+    const routeG = initRouteG({
+      headers: {
+        'access-control-allow-origin': '*',
+      },
+    })
+    routeG({
+      // stub any call to "operation: allTodos" with this response
+      // that will be placed into "body: data: {...}"
+      allTodos: {
+        allTodos,
+      },
+    })
     cy.visit('/')
     cy.get('.todo-list li').should('have.length', allTodos.length)
   })
