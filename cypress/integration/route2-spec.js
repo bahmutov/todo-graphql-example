@@ -52,6 +52,34 @@ describe('TodoMVC with GraphQL', () => {
       })
   })
 
+  it('shows loading indicator', () => {
+    // stub ALL GraphQL calls the same way
+    cy.route2(
+      {
+        method: 'POST',
+        url: '/',
+      },
+      {
+        delayMs: 300,
+        body: {
+          data: {
+            allTodos,
+          },
+        },
+        headers: {
+          'access-control-allow-origin': '*',
+        },
+      },
+    ).as('allTodos')
+
+    cy.visit('/')
+    cy.get('.loading').should('be.visible')
+    // then the allTodos resolves
+    cy.wait('@allTodos')
+    // and the loading indicator goes away
+    cy.get('.loading').should('not.be.visible')
+  })
+
   it('stubs by checking operation name', () => {
     // stub only the first call to {operationName: 'allTodos'}
     let firstCall = true

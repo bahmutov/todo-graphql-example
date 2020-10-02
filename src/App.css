@@ -1,0 +1,13 @@
+.loading {
+  font-weight: bolder;
+}
+
+.loading-error {
+  color: red;
+}
+
+.todos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

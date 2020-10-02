@@ -4,12 +4,12 @@ import Todos from '../Todos'
 import Footer from './Footer'
 
 const MainSection = ({ todosCount, completedCount, actions }) => (
-  <section className='main'>
+  <section className="main">
     {!!todosCount && (
       <span>
         <input
-          className='toggle-all'
-          type='checkbox'
+          className="toggle-all"
+          type="checkbox"
           checked={completedCount === todosCount}
         />
         <label onClick={actions.completeAllTodos} />
