@@ -12,7 +12,7 @@
  *
  * Note: only call this once per test
  */
-export const routeG = (operations) => {
+export const routeG = (operations, options = {}) => {
   const requests = {}
   const responses = {}
 
@@ -38,7 +38,19 @@ export const routeG = (operations) => {
       console.log('handling operation %s', body.operationName)
       requests[body.operationName].push(body)
 
-      return operationHandler(req, body)
+      if (typeof operationHandler === 'function') {
+        return operationHandler(req, body)
+      } else {
+        // we have a response stub
+        return req.reply({
+          ...options,
+          body: {
+            data: {
+              [body.operationName]: operationHandler,
+            },
+          },
+        })
+      }
     },
   )
 

@@ -31,6 +31,24 @@ describe('TodoMVC with GraphQL routeG', () => {
     cy.get('.todo-list li').should('have.length', allTodos.length)
   })
 
+  it('stubs all todos (simpler)', () => {
+    routeG(
+      {
+        // operation name matches "allTodos" variable name in this case
+        // so stub any call to "operation: allTodos" with this response
+        // that will be placed into "body: data: {...}"
+        allTodos,
+      },
+      {
+        headers: {
+          'access-control-allow-origin': '*',
+        },
+      },
+    )
+    cy.visit('/')
+    cy.get('.todo-list li').should('have.length', allTodos.length)
+  })
+
   it('adds and deletes todo', () => {
     cy.visit('/')
     cy.get('.loading').should('not.exist')
@@ -92,7 +110,7 @@ describe('TodoMVC with GraphQL routeG', () => {
       })
   })
 
-  it('adds and deletes todo via requests and responses', () => {
+  it('adds and deletes todo via requests and responses (better)', () => {
     cy.visit('/')
     cy.get('.loading').should('not.exist')
 
