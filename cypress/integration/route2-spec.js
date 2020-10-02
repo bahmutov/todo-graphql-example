@@ -4,11 +4,13 @@ const routeG = (operations) => {
   const requests = {}
   const responses = {}
 
-  Object.keys(operations).forEach((operationName) => {
+  const names = Object.keys(operations)
+  names.forEach((operationName) => {
     requests[operationName] = []
     responses[operationName] = []
   })
 
+  cy.log(`routeG **${names.join(', ')}**`)
   cy.route2(
     {
       method: 'POST',
@@ -28,7 +30,15 @@ const routeG = (operations) => {
     },
   )
 
-  return { requests, responses }
+  const saveResponse = (operationName, req) => {
+    expect(responses).to.have.property(operationName)
+
+    req.reply((res) => {
+      const serverResponse = JSON.parse(res.body)
+      responses[operationName].push(serverResponse)
+    })
+  }
+  return { requests, responses, saveResponse }
 }
 
 describe('TodoMVC with GraphQL', () => {
@@ -123,7 +133,7 @@ describe('TodoMVC with GraphQL', () => {
         })
     })
 
-    it.only('adds and deletes todo via requests and responses', () => {
+    it('adds and deletes todo via requests and responses', () => {
       cy.visit('/')
       cy.get('.loading').should('not.exist')
 
@@ -141,16 +151,13 @@ describe('TodoMVC with GraphQL', () => {
 
       // spy on "AddTodo" mutations to save the returned ID
       // record all outgoing "DeleteTodos" calls
-      const { requests, responses } = routeG({
+      const { requests, responses, saveResponse } = routeG({
+        // save the response from "AddTodo"
         AddTodo(req) {
-          req.reply((res) => {
-            const serverResponse = JSON.parse(res.body)
-            responses.AddTodo.push(serverResponse)
-          })
+          saveResponse('AddTodo', req)
         },
-        DeleteTodo(req, body) {
-          // deletedTodos(body)
-        },
+        // just record requests
+        DeleteTodo() {},
       })
 
       const randomTitle = `Delete me ${Cypress._.random(1e4)}`
@@ -162,12 +169,10 @@ describe('TodoMVC with GraphQL', () => {
 
       cy.log('confirm **addTodo** operation')
       cy.wrap(responses)
-        .its('AddTodo')
-        .should('have.length', 1)
-        .its('0.data.createTodo.id')
+        .its('AddTodo.0.data.createTodo.id')
         .then((id) => {
           addedTodoId = id
-          console.log('added todo with id %s', id)
+          cy.log(`added todo with id **${id}**`)
         })
 
       cy.contains('.todo-list li', randomTitle)
