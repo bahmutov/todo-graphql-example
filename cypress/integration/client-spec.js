@@ -56,4 +56,33 @@ describe('GraphQL client', () => {
         __typename: 'Todo',
       })
   })
+
+  it('mutates the first todo as completed', () => {
+    const m = gql`
+      mutation updateTodo($id: ID!, $completed: Boolean!) {
+        # operation name
+        updateTodo(id: $id, completed: $completed) {
+          # return fields
+          id
+          title
+          completed
+        }
+      }
+    `
+    cy.wrap(
+      client.mutate({
+        mutation: m,
+        variables: {
+          id: todos[0].id,
+          completed: true,
+        },
+      }),
+    )
+      .its('data.updateTodo')
+      .should('deep.equal', {
+        ...todos[0],
+        completed: true,
+        __typename: 'Todo',
+      })
+  })
 })
