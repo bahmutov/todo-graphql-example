@@ -11,6 +11,68 @@ describe('TodoMVC with GraphQL cy.route2', () => {
     },
   ]
 
+  it('completes the first todo', () => {
+    let allTodosCount = 0
+
+    cy.route2(
+      {
+        method: 'POST',
+        url: '/',
+      },
+      (req) => {
+        const g = JSON.parse(req.body)
+        if (g.operationName === 'allTodos') {
+          allTodosCount += 1
+
+          if (allTodosCount === 1) {
+            req.reply({
+              body: {
+                data: {
+                  allTodos,
+                },
+              },
+              headers: {
+                'access-control-allow-origin': '*',
+              },
+            })
+          } else if (allTodosCount === 2) {
+            const completedFirstTodo = Cypress._.cloneDeep(allTodos)
+            completedFirstTodo[0].completed = true
+            req.reply({
+              body: {
+                data: {
+                  allTodos: completedFirstTodo,
+                },
+              },
+              headers: {
+                'access-control-allow-origin': '*',
+              },
+            })
+          } else {
+            throw new Error('Did not expect more allTodos requests')
+          }
+        }
+        if (g.operationName === 'updateTodo') {
+          // confirm the sent variables
+          expect(g.variables).to.deep.equal({
+            id: '1',
+            completed: true,
+          })
+          req.reply()
+        }
+      },
+    )
+    cy.visit('/')
+    cy.get('.todo-list li')
+      .should('have.length', 2)
+      .first()
+      .should('not.have.class', 'completed')
+      .find('.toggle')
+      .click({ force: true })
+
+    cy.get('.todo-list li').first().should('have.class', 'completed')
+  })
+
   it('stubs todos query', () => {
     // stub ALL GraphQL calls the same way
     cy.route2(

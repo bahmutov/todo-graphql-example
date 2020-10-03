@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 describe('TodoMVC', () => {
-  it('completes todo', () => {
+  it('toggles todo', () => {
     let startClass
     cy.visit('/')
     cy.get('li.todo')

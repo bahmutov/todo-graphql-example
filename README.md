@@ -4,6 +4,8 @@
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
 
+![App in action](images/app.gif)
+
 Example asking for all todos
 
 ```
