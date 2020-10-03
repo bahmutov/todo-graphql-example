@@ -271,5 +271,8 @@ describe('TodoMVC with GraphQL routeG', () => {
           completed: true,
         },
       })
+
+    // notice in this test the UI does not update - because
+    // the app asks again for all todos, and again receives the original list
   })
 })
