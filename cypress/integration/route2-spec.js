@@ -51,14 +51,16 @@ describe('TodoMVC with GraphQL cy.route2', () => {
           } else {
             throw new Error('Did not expect more allTodos requests')
           }
-        }
-        if (g.operationName === 'updateTodo') {
-          // confirm the sent variables
+        } else if (g.operationName === 'updateTodo') {
+          // confirm the web app sends the right variables
+          // to make a todo completed
           expect(g.variables).to.deep.equal({
             id: '1',
             completed: true,
           })
           req.reply()
+        } else {
+          throw new Error(`Unexpected operation ${g.operationName}`)
         }
       },
     )
