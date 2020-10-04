@@ -253,6 +253,7 @@ describe('TodoMVC with GraphQL routeG', () => {
         {
           allTodos,
         },
+        // but for the second request reply with updated list
         {
           allTodos: completedFirstTodo,
         },
