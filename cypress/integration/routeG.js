@@ -43,12 +43,30 @@ export const routeG = (operations, options = {}) => {
         return operationHandler(req, body)
       } else {
         // we have a response stub
-        return req.reply({
-          ...options,
-          body: {
-            data: operationHandler,
-          },
-        })
+        if (Array.isArray(operationHandler)) {
+          console.log('response stubs')
+          if (operationHandler.length === 0) {
+            throw new Error(
+              `Cannot find a response for stubbed operation ${body.operationName}`,
+            )
+          }
+          // pop the first response from the list and return it
+          const data = operationHandler.shift()
+          return req.reply({
+            ...options,
+            body: {
+              data,
+            },
+          })
+        } else {
+          console.log('single response stub')
+          return req.reply({
+            ...options,
+            body: {
+              data: operationHandler,
+            },
+          })
+        }
       }
     },
   )

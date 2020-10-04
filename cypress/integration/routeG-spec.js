@@ -233,7 +233,9 @@ describe('TodoMVC with GraphQL routeG', () => {
       })
   })
 
-  it('completes first todo', () => {
+  it('completes the first todo', () => {
+    // respond to every request (if there is a stub)
+    // with same CORS headers
     const routeG = initRouteG({
       headers: {
         'access-control-allow-origin': '*',
@@ -242,11 +244,19 @@ describe('TodoMVC with GraphQL routeG', () => {
 
     expect(allTodos[0].completed, 'first todo is not done yet').to.be.false
 
+    const completedFirstTodo = Cypress._.cloneDeep(allTodos)
+    completedFirstTodo[0].completed = true
+
     const { requests } = routeG({
       // when application loads the list, reply with the initial list
-      allTodos: {
-        allTodos,
-      },
+      allTodos: [
+        {
+          allTodos,
+        },
+        {
+          allTodos: completedFirstTodo,
+        },
+      ],
       // when the app tries to update a todo
       // stub the call so it does not go to the server
       updateTodo: {},
@@ -272,7 +282,10 @@ describe('TodoMVC with GraphQL routeG', () => {
         },
       })
 
-    // notice in this test the UI does not update - because
-    // the app asks again for all todos, and again receives the original list
+    // UI should be updated
+    cy.get('.todo-list li')
+      .should('have.length', allTodos.length)
+      .first()
+      .should('have.class', 'completed')
   })
 })
