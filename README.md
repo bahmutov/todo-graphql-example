@@ -1,5 +1,7 @@
 # todo-graphql-example [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example) [![renovate-app badge][renovate-badge]][renovate-app]
 
+Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/)
+
 ## App
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
