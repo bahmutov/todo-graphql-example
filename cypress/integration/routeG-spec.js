@@ -288,5 +288,9 @@ describe('TodoMVC with GraphQL routeG', () => {
       .should('have.length', allTodos.length)
       .first()
       .should('have.class', 'completed')
+
+    // optional: check if the app really called allTodos twice
+    cy.log('**allTodos** was called twice')
+    cy.wrap(requests).its('allTodos').should('have.length', 2)
   })
 })
