@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 /**
- * Registers a single cy.route2 handler that specifically is suited for GraphQL calls.
+ * Registers a single cy.intercept handler that specifically is suited for GraphQL calls.
  * Spies and records the requests and responses using "operationName" field of the call.
  *
  * Overall design goal:
@@ -24,12 +24,12 @@ export const routeG = (operations, options = {}) => {
   })
 
   cy.log(`routeG **${names.join(', ')}**`)
-  cy.route2(
+  cy.intercept(
     {
       method: 'POST',
     },
     (req) => {
-      const body = JSON.parse(req.body)
+      const body = req.body
 
       const operationHandler = operations[body.operationName]
       if (!operationHandler) {
@@ -75,7 +75,7 @@ export const routeG = (operations, options = {}) => {
     expect(responses).to.have.property(operationName)
 
     req.reply((res) => {
-      const serverResponse = JSON.parse(res.body)
+      const serverResponse = res.body
       responses[operationName].push(serverResponse)
     })
   }

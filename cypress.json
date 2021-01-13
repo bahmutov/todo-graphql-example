@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:1234",
-  "experimentalNetworkStubbing": true,
-  "testFiles": "**/*spec.*"
+  "testFiles": "**/*spec.*",
+  "supportFile": false,
+  "pluginsFile": false
 }

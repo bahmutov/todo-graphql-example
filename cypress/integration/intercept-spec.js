@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
-describe('TodoMVC with GraphQL cy.route2', () => {
+// note: previously used cy.route2 command is officially cy.intercept
+describe('TodoMVC with GraphQL cy.intercept', () => {
   const allTodos = [
     { id: '1', title: 'use GraphQL', completed: false, __typename: 'Todo' },
     {
@@ -14,13 +15,14 @@ describe('TodoMVC with GraphQL cy.route2', () => {
   it('completes the first todo', () => {
     let allTodosCount = 0
 
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
       (req) => {
-        const g = JSON.parse(req.body)
+        expect(req.body, 'request has been parsed').to.be.an('object')
+        const g = req.body
         if (g.operationName === 'allTodos') {
           allTodosCount += 1
 
@@ -31,9 +33,6 @@ describe('TodoMVC with GraphQL cy.route2', () => {
                   allTodos,
                 },
               },
-              headers: {
-                'access-control-allow-origin': '*',
-              },
             })
           } else if (allTodosCount === 2) {
             const completedFirstTodo = Cypress._.cloneDeep(allTodos)
@@ -43,9 +42,6 @@ describe('TodoMVC with GraphQL cy.route2', () => {
                 data: {
                   allTodos: completedFirstTodo,
                 },
-              },
-              headers: {
-                'access-control-allow-origin': '*',
               },
             })
           } else {
@@ -118,7 +114,7 @@ describe('TodoMVC with GraphQL cy.route2', () => {
 
   it('shows loading indicator', () => {
     // stub ALL GraphQL calls the same way
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
@@ -130,9 +126,6 @@ describe('TodoMVC with GraphQL cy.route2', () => {
             allTodos,
           },
         },
-        headers: {
-          'access-control-allow-origin': '*',
-        },
       },
     ).as('allTodos')
 
@@ -141,7 +134,7 @@ describe('TodoMVC with GraphQL cy.route2', () => {
     // then the allTodos resolves
     cy.wait('@allTodos')
     // and the loading indicator goes away
-    cy.get('.loading').should('not.be.visible')
+    cy.get('.loading').should('not.exist')
   })
 
   // does not work - we cannot add several listeners to the same
@@ -161,16 +154,16 @@ describe('TodoMVC with GraphQL cy.route2', () => {
     // but first spy on "operationName: AddTodo"
     // find the id of the new todo by searching the "AddTodo" mutations
     let addedTodoId
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
       (req) => {
-        const body = JSON.parse(req.body)
+        const body = req.body
         if (body.operationName === 'AddTodo') {
           req.reply((res) => {
-            const serverResponse = JSON.parse(res.body)
+            const serverResponse = res.body
             addedTodoId = serverResponse.data.createTodo.id
           })
         }
@@ -188,13 +181,12 @@ describe('TodoMVC with GraphQL cy.route2', () => {
 
     // spy on "operationName: DeleteTodo"
     const deletedTodos = cy.stub().as('deleteTodos')
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
-      (req) => {
-        const body = JSON.parse(req.body)
+      ({ body }) => {
         if (body.operationName === 'DeleteTodo') {
           deletedTodos(body)
         }
@@ -224,14 +216,13 @@ describe('TodoMVC with GraphQL cy.route2', () => {
     // stub only the first call to {operationName: 'allTodos'}
     let firstCall = true
 
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
       (req) => {
-        console.log('req', req)
-        const body = JSON.parse(req.body)
+        const body = req.body
         if (firstCall && body.operationName === 'allTodos') {
           firstCall = false
           req.reply({
@@ -239,9 +230,6 @@ describe('TodoMVC with GraphQL cy.route2', () => {
               data: {
                 allTodos,
               },
-            },
-            headers: {
-              'access-control-allow-origin': '*',
             },
           })
         }
@@ -261,16 +249,16 @@ describe('TodoMVC with GraphQL cy.route2', () => {
   it('spies on adding todos', () => {
     let todoResponse
 
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
       (req) => {
-        const body = JSON.parse(req.body)
+        const body = req.body
         if (body.operationName === 'AddTodo') {
           req.reply((res) => {
-            todoResponse = JSON.parse(res.body).data
+            todoResponse = res.body.data
             console.log('new todo')
             console.log(todoResponse)
           })

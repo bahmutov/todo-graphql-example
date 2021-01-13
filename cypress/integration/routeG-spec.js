@@ -129,7 +129,7 @@ describe('TodoMVC with GraphQL routeG', () => {
     routeG({
       AddTodo(req, body) {
         req.reply((res) => {
-          const serverResponse = JSON.parse(res.body)
+          const serverResponse = res.body
           addedTodoId = serverResponse.data.createTodo.id
           console.log('added todo id %s', addedTodoId)
         })

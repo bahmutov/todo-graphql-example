@@ -97,7 +97,7 @@ Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server
 
 By mocking it using `json-graphql-server` completely: see [cypress/integration/spec.js](cypress/integration/spec.js) file.
 
-By mocking network calls using [cy.route2](https://on.cypress.io/route2) see [cypress/integration/route2-spec.js](cypress/integration/route2-spec.js)
+By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js)
 
 By mocking network calls using `routeG` see [cypress/integration/routeG-spec.js](cypress/integration/routeG-spec.js)
 
