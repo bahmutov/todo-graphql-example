@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('TodoMVC with GraphQL cy.route2', () => {
+describe('TodoMVC with GraphQL cy.intercept', () => {
   const allTodos = [
     { id: '1', title: 'use GraphQL', completed: false, __typename: 'Todo' },
     {
@@ -11,10 +11,10 @@ describe('TodoMVC with GraphQL cy.route2', () => {
     },
   ]
 
-  it('completes the first todo', () => {
+  it.only('completes the first todo', () => {
     let allTodosCount = 0
 
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
@@ -31,9 +31,9 @@ describe('TodoMVC with GraphQL cy.route2', () => {
                   allTodos,
                 },
               },
-              headers: {
-                'access-control-allow-origin': '*',
-              },
+              // headers: {
+              //   'access-control-allow-origin': '*',
+              // },
             })
           } else if (allTodosCount === 2) {
             const completedFirstTodo = Cypress._.cloneDeep(allTodos)
@@ -44,9 +44,9 @@ describe('TodoMVC with GraphQL cy.route2', () => {
                   allTodos: completedFirstTodo,
                 },
               },
-              headers: {
-                'access-control-allow-origin': '*',
-              },
+              // headers: {
+              //   'access-control-allow-origin': '*',
+              // },
             })
           } else {
             throw new Error('Did not expect more allTodos requests')
