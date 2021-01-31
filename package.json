@@ -31,6 +31,6 @@
     "fetch-mock": "9.11.0",
     "parcel-bundler": "1.12.4",
     "prettier": "2.2.1",
-    "start-server-and-test": "1.11.7"
+    "start-server-and-test": "1.12.0"
   }
 }
