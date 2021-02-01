@@ -1,4 +1,4 @@
-# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-6.3.0-brightgreen)
+# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-6.4.0-brightgreen)
 [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example) [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/)
