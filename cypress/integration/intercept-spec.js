@@ -291,6 +291,18 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
 
     cy.get('.new-todo').type('add an item{enter}')
     cy.wait('@addTodo')
+      // let's confirm the item the app is sending
+      .its('request.body.variables')
+      .should('deep.equal', {
+        title: 'add an item',
+      })
+    // the server responds with the id of the new item
+    // since we have waited for the request to happen
+    // now we can just use cy.get(alias) to retrieve it again
+    cy.get('@addTodo')
+      .its('response.body.data.createTodo')
+      .should('have.property', 'id')
+
     // after adding a todo, the app fetches the list again
     cy.wait('@allTodos')
 
