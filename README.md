@@ -94,7 +94,22 @@ Response
 
 Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server). Front-end React code is in [src](src) folder, modeled after [Getting Started With React And GraphQL](https://medium.com/codingthesmartway-com-blog/getting-started-with-react-and-graphql-395311c1e8da) post.
 
-## Cypress testing using fetch
+To start the applications and open Cypress
+
+```shell
+$ npm run dev
+# starts the API, starts the web application
+# when the application responds
+# opens Cypress test runner
+```
+
+To start the application and run headless Cypress tests
+
+```shell
+$ npm run local
+```
+
+## Cypress tests
 
 By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js)
 

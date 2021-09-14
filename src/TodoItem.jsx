@@ -5,7 +5,9 @@ import classNames from 'classnames'
 
 const DELETE_TODO = gql`
   mutation DeleteTodo($id: ID!) {
-    removeTodo(id: $id)
+    removeTodo(id: $id) {
+      id
+    }
   }
 `
 

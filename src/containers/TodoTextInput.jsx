@@ -11,8 +11,8 @@ function randomId() {
 }
 
 const ADD_TODO = gql`
-  mutation AddTodo($id: ID!, $title: String!) {
-    createTodo(id: $id, title: $title, completed: false) {
+  mutation AddTodo($title: String!) {
+    createTodo(title: $title, completed: false) {
       id
     }
   }
