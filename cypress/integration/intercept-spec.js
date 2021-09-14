@@ -73,7 +73,7 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
 
   it('stubs todos query', () => {
     // stub ALL GraphQL calls the same way
-    cy.route2(
+    cy.intercept(
       {
         method: 'POST',
         url: '/',
@@ -137,9 +137,7 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
     cy.get('.loading').should('not.exist')
   })
 
-  // does not work - we cannot add several listeners to the same
-  // route, since the first match stops the check
-  it.skip('adds and deletes todo', () => {
+  it('adds and deletes todo', () => {
     cy.visit('/')
     cy.get('.loading').should('not.exist')
 
@@ -148,50 +146,30 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
       .should('have.length.gte', 0)
       .then((todos) => {
         todosN = todos.length
+        cy.log(`starts with **${todosN}** items`)
       })
 
     // let's add new todo
     // but first spy on "operationName: AddTodo"
-    // find the id of the new todo by searching the "AddTodo" mutations
-    let addedTodoId
     cy.intercept(
       {
         method: 'POST',
         url: '/',
       },
       (req) => {
-        const body = req.body
-        if (body.operationName === 'AddTodo') {
-          req.reply((res) => {
-            const serverResponse = res.body
-            addedTodoId = serverResponse.data.createTodo.id
-          })
-        }
+        const { body } = req
+        req.alias = body.operationName
       },
     )
 
-    const randomTitle = `Delete me ${Cypress._.random(1e10)}`
+    const randomTitle = `To be deleted ${Cypress._.random(1e10)}`
     cy.get('.new-todo')
       .type(`${randomTitle}{enter}`)
       .then(() => {
         cy.get('.todo-list li').should('have.length', todosN + 1)
       })
-
-    cy.get('@deleteTodos').should('have.been.calledOnce').its('firstCall')
-
-    // spy on "operationName: DeleteTodo"
-    const deletedTodos = cy.stub().as('deleteTodos')
-    cy.intercept(
-      {
-        method: 'POST',
-        url: '/',
-      },
-      ({ body }) => {
-        if (body.operationName === 'DeleteTodo') {
-          deletedTodos(body)
-        }
-      },
-    )
+    // confirm the call to add an item has been made
+    cy.wait('@AddTodo')
 
     cy.contains('.todo-list li', randomTitle)
       .find('.destroy')
@@ -203,13 +181,8 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
     // and the new todo should not exist
     cy.contains('.todo-list li', randomTitle).should('not.exist')
 
-    // confirm the delete mutation was called
-    // cy.get('@deleteTodos')
-    //   .should('have.been.calledOnce')
-    //   .its('firstCall.args.0.variables')
-    //   .should('deep.equal', {
-    //     id: todoId,
-    //   })
+    // confirm the call to delete the item has been made
+    cy.wait('@DeleteTodo')
   })
 
   it('stubs by checking operation name', () => {

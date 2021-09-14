@@ -1,7 +1,7 @@
 # todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-6.9.1-brightgreen)
 [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example) [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
 
-Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/)
+Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
 
 ## App
 
@@ -96,11 +96,7 @@ Backend is [json-graphql-server](https://github.com/marmelab/json-graphql-server
 
 ## Cypress testing using fetch
 
-By mocking it using `json-graphql-server` completely: see [cypress/integration/spec.js](cypress/integration/spec.js) file.
-
 By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js)
-
-By mocking network calls using `routeG` see [cypress/integration/routeG-spec.js](cypress/integration/routeG-spec.js)
 
 Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client
 
