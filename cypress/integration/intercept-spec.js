@@ -257,4 +257,45 @@ describe('TodoMVC with GraphQL cy.intercept', () => {
 
     cy.get('@todo').should('have.property', 'id')
   })
+
+  it('intercepts operations using custom header', () => {
+    // we have special middleware in our GraphQL client
+    // that puts the operation name in the request header "x-gql-operation-name"
+    // we can define intercepts using this custom header
+    cy.intercept({
+      method: 'POST',
+      url: '/',
+      headers: {
+        'x-gql-operation-name': 'allTodos',
+      },
+    }).as('allTodos')
+
+    cy.intercept({
+      method: 'POST',
+      url: '/',
+      headers: {
+        'x-gql-operation-name': 'AddTodo',
+      },
+    }).as('addTodo')
+
+    cy.intercept({
+      method: 'POST',
+      url: '/',
+      headers: {
+        'x-gql-operation-name': 'updateTodo',
+      },
+    }).as('updateTodo')
+
+    cy.visit('/')
+    cy.wait('@allTodos')
+
+    cy.get('.new-todo').type('add an item{enter}')
+    cy.wait('@addTodo')
+    // after adding a todo, the app fetches the list again
+    cy.wait('@allTodos')
+
+    // let's complete the last item
+    cy.get('.todo').last().find('.toggle').click()
+    cy.wait('@updateTodo')
+  })
 })
