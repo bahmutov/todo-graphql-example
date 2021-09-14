@@ -1,7 +1,27 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  InMemoryCache,
+  HttpLink,
+  ApolloLink,
+  concat,
+} from '@apollo/client'
+
+// adding custom header with the GraphQL operation name
+// https://www.apollographql.com/docs/react/networking/advanced-http-networking/
+const operationNameLink = new ApolloLink((operation, forward) => {
+  operation.setContext(({ headers }) => ({
+    headers: {
+      'x-gql-operation-name': operation.operationName,
+      ...headers,
+    },
+  }))
+  return forward(operation)
+})
+
+const httpLink = new HttpLink({ uri: 'http://localhost:3000' })
 
 export const client = new ApolloClient({
-  uri: 'http://localhost:3000',
+  link: concat(operationNameLink, httpLink),
   fetchOptions: {
     mode: 'no-cors',
   },
