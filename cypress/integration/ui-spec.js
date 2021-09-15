@@ -38,7 +38,7 @@ describe('TodoMVC', () => {
         // we can form the right assertion
         const classAssertion = completed ? 'have.class' : 'not.have.class'
         cy.get('.todo')
-          .should('have.length', 2)
+          .should('have.length.gte', 2)
           .first()
           .should(classAssertion, 'completed')
           .find('.toggle')
@@ -46,7 +46,7 @@ describe('TodoMVC', () => {
 
         const toggleAssertion = completed ? 'not.have.class' : 'have.class'
         cy.get('.todo')
-          .should('have.length', 2)
+          .should('have.length.gte', 2)
           .first()
           .should(toggleAssertion, 'completed')
       })
