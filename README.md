@@ -10,6 +10,7 @@ Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-gra
 - [Set GraphQL Operation Name As Custom Header And Use It In cy.intercept](https://www.youtube.com/watch?v=AcU5mkedchM)
 - [Add A New Item By Making GraphQL Call Using cy.request Command](https://www.youtube.com/watch?v=ubnJ9kWD1yQ)
 - [Use Application GraphQL Client To Make Calls From The Cypress Test](https://youtu.be/6ykTS40_scM)
+- [Stub The Initial Data Load Using A Fixture](https://youtu.be/IxgWmzy26gM)
 
 ## App
 
@@ -126,6 +127,8 @@ Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is
 Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write.
 
 We can use [cy.request](https://on.cypress.io/request) command to make GraphQL requests ourselves, see the [cypress/integration/request-spec.js](./cypress/integration/request-spec.js) file.
+
+We can stub the initial items load using a fixture file. See the spec file [cypress/integration/fixture-spec.js](./cypress/integration/fixture-spec.js).
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/

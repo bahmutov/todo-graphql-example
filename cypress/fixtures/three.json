@@ -1,0 +1,19 @@
+{
+  "data": {
+    "allTodos": [
+      {
+        "id": "1",
+        "title": "use GraphQL",
+        "completed": true,
+        "__typename": "Todo"
+      },
+      {
+        "id": "2",
+        "title": "write React frontend",
+        "completed": false,
+        "__typename": "Todo"
+      },
+      { "id": "21", "title": "nice", "completed": true, "__typename": "Todo" }
+    ]
+  }
+}
