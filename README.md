@@ -3,6 +3,12 @@
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
 
+## Videos
+
+- [Toggle Todo When Using GraphQL Calls](https://www.youtube.com/watch?v=QA_moq_Yh5M)
+- [Set GraphQL Network Intercept Alias](https://www.youtube.com/watch?v=jN1vsGGXAjw)
+- [Set GraphQL Operation Name As Custom Header And Use It In cy.intercept](https://www.youtube.com/watch?v=AcU5mkedchM)
+
 ## App
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
@@ -116,12 +122,6 @@ By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) s
 Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client
 
 Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write
-
-## Videos
-
-- [Toggle Todo When Using GraphQL Calls](https://www.youtube.com/watch?v=QA_moq_Yh5M)
-- [Set GraphQL Network Intercept Alias](https://www.youtube.com/watch?v=jN1vsGGXAjw)
-- [Set GraphQL Operation Name As Custom Header And Use It In cy.intercept](https://www.youtube.com/watch?v=AcU5mkedchM)
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
