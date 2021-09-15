@@ -1,3 +1,4 @@
+/// <reference types="cypress" />
 import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
 import { todos } from '../../db'

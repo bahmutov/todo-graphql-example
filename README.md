@@ -8,6 +8,8 @@ Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-gra
 - [Toggle Todo When Using GraphQL Calls](https://www.youtube.com/watch?v=QA_moq_Yh5M)
 - [Set GraphQL Network Intercept Alias](https://www.youtube.com/watch?v=jN1vsGGXAjw)
 - [Set GraphQL Operation Name As Custom Header And Use It In cy.intercept](https://www.youtube.com/watch?v=AcU5mkedchM)
+- [Add A New Item By Making GraphQL Call Using cy.request Command](https://www.youtube.com/watch?v=ubnJ9kWD1yQ)
+- [Use Application GraphQL Client To Make Calls From The Cypress Test](https://youtu.be/6ykTS40_scM)
 
 ## App
 
