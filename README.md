@@ -117,6 +117,12 @@ Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is
 
 Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write
 
+## Videos
+
+- [Toggle Todo When Using GraphQL Calls](https://www.youtube.com/watch?v=QA_moq_Yh5M)
+- [Set GraphQL Network Intercept Alias](https://www.youtube.com/watch?v=jN1vsGGXAjw)
+- [Set GraphQL Operation Name As Custom Header And Use It In cy.intercept](https://www.youtube.com/watch?v=AcU5mkedchM)
+
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
 [badges image]: https://github.com/bahmutov/todo-graphql-example/workflows/badges/badge.svg?branch=master
