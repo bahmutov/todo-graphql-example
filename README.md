@@ -1,5 +1,5 @@
 # todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-8.4.0-brightgreen)
-[![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example) [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
+[![ci status][gh image]][gh url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
 
@@ -121,3 +121,5 @@ Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple
 [renovate-app]: https://renovateapp.com/
 [badges image]: https://github.com/bahmutov/todo-graphql-example/workflows/badges/badge.svg?branch=master
 [badges url]: https://github.com/bahmutov/todo-graphql-example/actions
+[gh image]: https://github.com/bahmutov/todo-graphql-example/workflows/ci/badge.svg?branch=master
+[gh url]: https://github.com/bahmutov/todo-graphql-example/actions
