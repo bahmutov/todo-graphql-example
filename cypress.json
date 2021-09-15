@@ -2,5 +2,6 @@
   "baseUrl": "http://localhost:1234",
   "testFiles": "**/*spec.*",
   "supportFile": false,
-  "pluginsFile": false
+  "pluginsFile": false,
+  "video": false
 }
