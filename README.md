@@ -117,11 +117,13 @@ $ npm run local
 
 ## Cypress tests
 
-By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js)
+By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see the [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js) file.
 
-Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client
+Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client.
 
-Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write
+Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write.
+
+We can use [cy.request](https://on.cypress.io/request) command to make GraphQL requests ourselves, see the [cypress/integration/request-spec.js](./cypress/integration/request-spec.js) file.
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
