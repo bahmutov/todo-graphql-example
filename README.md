@@ -12,6 +12,22 @@ Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-gra
 - [Use Application GraphQL Client To Make Calls From The Cypress Test](https://youtu.be/6ykTS40_scM)
 - [Stub The Initial Data Load Using A Fixture](https://youtu.be/IxgWmzy26gM)
 
+## Cypress tests
+
+All tests are in the [cypress/integration](./cypress/integration) folder.
+
+By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see the [intercept-spec.js](cypress/integration/intercept-spec.js) file.
+
+Spec [client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client.
+
+Spec [ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write.
+
+We can use [cy.request](https://on.cypress.io/request) command to make GraphQL requests ourselves, see the [request-spec.js](./cypress/integration/request-spec.js) file.
+
+We can stub the initial items load using a fixture file. See the spec file [fixture-spec.js](./cypress/integration/fixture-spec.js).
+
+We delete all items in the [delete-spec.js](./cypress/integration/delete-spec.js) test. First we query all todo items, then delete them one by one.
+
 ## App
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
@@ -117,18 +133,6 @@ To start the application and run headless Cypress tests
 ```shell
 $ npm run local
 ```
-
-## Cypress tests
-
-By mocking network calls using [cy.intercept](https://on.cypress.io/intercept) see the [cypress/integration/intercept-spec.js](cypress/integration/intercept-spec.js) file.
-
-Spec [cypress/integration/client-spec.js](cypress/integration/client-spec.js) is testing making individual GraphQL calls using app's own client.
-
-Spec [cypress/integration/ui-spec.js](cypress/integration/ui-spec.js) has simple tests that do not depend on the network, and thus are hard to write.
-
-We can use [cy.request](https://on.cypress.io/request) command to make GraphQL requests ourselves, see the [cypress/integration/request-spec.js](./cypress/integration/request-spec.js) file.
-
-We can stub the initial items load using a fixture file. See the spec file [cypress/integration/fixture-spec.js](./cypress/integration/fixture-spec.js).
 
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
