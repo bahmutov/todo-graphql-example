@@ -32,7 +32,6 @@ describe('Delete items', () => {
 
         // delete all items one by one
         ids.forEach((id) => {
-          cy.log(`deleting item id:**${id}**`)
           const mutation = gql`
             mutation deleteTodo {
               removeTodo(id: "${id}") {
@@ -40,10 +39,11 @@ describe('Delete items', () => {
               }
             }
           `
-          cy.wrap(
-            client.mutate({
-              mutation,
-            }),
+          cy.log(`deleting item id:**${id}**`).then(
+            () =>
+              client.mutate({
+                mutation,
+              }),
             { log: false },
           )
         })
