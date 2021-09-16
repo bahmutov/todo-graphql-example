@@ -11,6 +11,7 @@ Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-gra
 - [Add A New Item By Making GraphQL Call Using cy.request Command](https://www.youtube.com/watch?v=ubnJ9kWD1yQ)
 - [Use Application GraphQL Client To Make Calls From The Cypress Test](https://youtu.be/6ykTS40_scM)
 - [Stub The Initial Data Load Using A Fixture](https://youtu.be/IxgWmzy26gM)
+- [Delete All Items Using GraphQL Client As Part Of Cypress Test](https://www.youtube.com/watch?v=l7E7K7x7V8g)
 
 ## Cypress tests
 
