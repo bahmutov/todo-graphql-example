@@ -27,3 +27,7 @@ export const client = new ApolloClient({
   },
   cache: new InMemoryCache(),
 })
+
+if (window.Cypress) {
+  window.graphqlClient = client
+}
