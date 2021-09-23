@@ -136,6 +136,15 @@ To start the application and run headless Cypress tests
 $ npm run local
 ```
 
+## About me
+
+- [@bahmutov](https://twitter.com/bahmutov)
+- [glebbahmutov.com](https://glebbahmutov.com)
+- [blog](https://glebbahmutov.com/blog)
+- [videos](https://www.youtube.com/glebbahmutov)
+- [presentations](https://slides.com/bahmutov)
+- [cypress.tips](https://cypress.tips)
+
 [renovate-badge]: https://img.shields.io/badge/renovate-app-blue.svg
 [renovate-app]: https://renovateapp.com/
 [badges image]: https://github.com/bahmutov/todo-graphql-example/workflows/badges/badge.svg?branch=master
