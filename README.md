@@ -30,6 +30,8 @@ We can stub the initial items load using a fixture file. See the spec file [fixt
 
 We delete all items in the [delete-spec.js](./cypress/integration/delete-spec.js) test. First we query all todo items, then delete them one by one.
 
+We can import the list of items from a fixture file [cypress/fixtures/three.json](./cypress/fixtures/three.json) and create a dynamic test for each item, see the spec file [dynamic-spec.js](./cypress/integration/dynamic-spec.js).
+
 ## App
 
 Start server with `npm start`. You can find GraphQL playground at `http://localhost:3000`
