@@ -13,6 +13,7 @@ Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-gra
 - [Stub The Initial Data Load Using A Fixture](https://youtu.be/IxgWmzy26gM)
 - [Delete All Items Using GraphQL Client As Part Of Cypress Test](https://www.youtube.com/watch?v=l7E7K7x7V8g)
 - [Directly Spying on GraphQL Calls Made By The Application](https://youtu.be/XadOqS0YNJE)
+- [Dynamic Tests From Cypress.io Fixture File](https://youtu.be/EXVwvJrUGJ8)
 
 ## Cypress tests
 
