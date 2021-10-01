@@ -17,6 +17,20 @@ describe('Delete items', () => {
     cy.visit('/')
     cy.wait('@allTodos').its('response.body.data.allTodos').should('be.empty')
     cy.get('.todo').should('have.length', 0)
+  })
+
+  it('deletes after creating a todo', () => {
+    cy.intercept({
+      method: 'POST',
+      url: '/',
+      headers: {
+        'x-gql-operation-name': 'allTodos',
+      },
+    }).as('allTodos')
+
+    cy.visit('/')
+    cy.wait('@allTodos').its('response.body.data.allTodos').should('be.empty')
+    cy.get('.todo').should('have.length', 0)
 
     cy.get('.new-todo')
       .type('first task{enter}')

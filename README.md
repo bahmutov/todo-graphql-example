@@ -3,6 +3,8 @@
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
 
+Read [Make GraphQL Calls From Cypress Tests](https://glebbahmutov.com/blog/request-graphql/)
+
 ## Videos
 
 - [Toggle Todo When Using GraphQL Calls](https://www.youtube.com/watch?v=QA_moq_Yh5M)
