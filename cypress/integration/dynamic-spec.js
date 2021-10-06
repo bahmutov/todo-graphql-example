@@ -3,7 +3,7 @@
 // Type check works for JSON module
 // because in "jsconfig.json" file I use "resolveJsonModule: true"
 import { data } from '../fixtures/three.json'
-import { deleteAll } from './utils'
+import { deleteAll, createItems } from './utils'
 
 // read the blog post https://glebbahmutov.com/blog/dynamic-tests-from-fixture/
 // watch the video "Dynamic Tests From Cypress.io Fixture File" https://youtu.be/EXVwvJrUGJ8
@@ -14,13 +14,13 @@ describe('Creates each item', () => {
   // use the imported items to create each item
   // then verify the application shows it
   it('in a single test', () => {
+    // clear all existing items
+    deleteAll()
+
     cy.fixture('three.json')
       .its('data.allTodos')
       .then((list) => {
         list.forEach((item) => {
-          // clear all existing items
-          deleteAll()
-
           // create the item using a network call
           cy.request({
             method: 'POST',
@@ -77,5 +77,11 @@ describe('Creates each item', () => {
       const classAssertion = item.completed ? 'have.class' : 'not.have.class'
       cy.contains('.todo', item.title).should(classAssertion, 'completed')
     })
+  })
+
+  it('creates items', () => {
+    createItems(data.allTodos)
+    cy.visit('/')
+    cy.get('.todo').should('have.length', data.allTodos.length)
   })
 })
