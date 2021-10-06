@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// @ts-check
 
 describe('TodoMVC', () => {
   it('toggles todo', () => {

@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// @ts-check
 
 import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
