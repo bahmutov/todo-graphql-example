@@ -13,7 +13,12 @@
         "completed": false,
         "__typename": "Todo"
       },
-      { "id": "21", "title": "nice", "completed": true, "__typename": "Todo" }
+      {
+        "id": "21",
+        "title": "write Cypress tests",
+        "completed": true,
+        "__typename": "Todo"
+      }
     ]
   }
 }
