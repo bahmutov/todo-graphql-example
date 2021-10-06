@@ -1,3 +1,4 @@
+// @ts-check
 describe('server API CORS', () => {
   it('returns expected headers for OPTIONS', () => {
     cy.request('OPTIONS', 'http://localhost:3000').then((res) => {

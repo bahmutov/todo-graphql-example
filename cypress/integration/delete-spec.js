@@ -1,5 +1,4 @@
 // @ts-check
-/// <reference types="cypress" />
 import { deleteAll } from './utils'
 
 describe('Delete items', () => {

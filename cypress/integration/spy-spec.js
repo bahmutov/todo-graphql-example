@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// @ts-check
 
 describe('TodoMVC GraphQL client', () => {
   it('adds a todo', () => {
@@ -6,6 +6,7 @@ describe('TodoMVC GraphQL client', () => {
     cy.visit('/')
       .should('have.property', 'graphqlClient')
       .then((client) => {
+        // @ts-ignore
         cy.spy(client, 'mutate').as('mutate')
       })
     // have the application make the call by using the UI
@@ -27,6 +28,7 @@ describe('TodoMVC GraphQL client', () => {
       .then((client) => {
         // once the ".as" command finishes
         // we can access the spy using the "this.mutate" property
+        // @ts-ignore
         cy.spy(client, 'mutate').as('mutate')
       })
     // have the application make the call by using the UI

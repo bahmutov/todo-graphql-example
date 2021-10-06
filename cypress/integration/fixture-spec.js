@@ -1,5 +1,4 @@
-/// <reference types="cypress" />
-
+// @ts-check
 describe('TodoMVC', () => {
   it('starts with N items', () => {
     cy.intercept(

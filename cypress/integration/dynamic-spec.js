@@ -1,6 +1,7 @@
 // @ts-check
-/// <reference types="cypress" />
 
+// Type check works for JSON module
+// because in "jsconfig.json" file I use "resolveJsonModule: true"
 import { data } from '../fixtures/three.json'
 import { deleteAll } from './utils'
 

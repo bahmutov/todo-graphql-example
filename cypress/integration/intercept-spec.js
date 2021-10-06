@@ -1,5 +1,4 @@
-/// <reference types="cypress" />
-
+// @ts-check
 // note: previously used cy.route2 command is officially cy.intercept
 describe('TodoMVC with GraphQL cy.intercept', () => {
   const allTodos = [
