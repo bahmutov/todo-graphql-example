@@ -19,6 +19,7 @@ export function getTodos() {
         query: gql`
           query getAllTodos {
             allTodos {
+              title
               id
             }
           }
