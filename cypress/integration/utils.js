@@ -24,14 +24,17 @@ export function deleteAll() {
     // from each item, grab just the property "id"
     .then((items) => Cypress._.map(items, 'id'))
     .then((ids) => {
-      if (!ids.length) {
+      /** @type string[] */
+      // @ts-ignore
+      const idList = ids
+      if (!idList.length) {
         cy.log('Nothing to delete')
         return
       }
-      cy.log(`Found **${ids.length}** todos`)
+      cy.log(`Found **${idList.length}** todos`)
 
       // delete all items one by one
-      ids.forEach((id) => {
+      idList.forEach((id) => {
         const mutation = gql`
             mutation deleteTodo {
               removeTodo(id: "${id}") {
@@ -39,12 +42,10 @@ export function deleteAll() {
               }
             }
           `
-        cy.log(`deleting item id:**${id}**`).then(
-          () =>
-            client.mutate({
-              mutation,
-            }),
-          { log: false },
+        cy.log(`deleting item id:**${id}**`).then(() =>
+          client.mutate({
+            mutation,
+          }),
         )
       })
     })
