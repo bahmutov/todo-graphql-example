@@ -3,6 +3,9 @@
 import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
 
+/**
+ * Deletes all items from the server
+ */
 export function deleteAll() {
   // fetches all todo items, grabs their IDs, and deletes them
   cy.log('**deleteAll**')
@@ -49,4 +52,37 @@ export function deleteAll() {
         )
       })
     })
+}
+
+/**
+ * @typedef {Object} Todo
+ * @property {string} title
+ * @property {boolean} completed ’
+ */
+/**
+ * Creates items on the server one by one
+ * @param {Todo[]} todos
+ */
+export function createItems(todos) {
+  todos.forEach((item) => {
+    // create the item using a network call
+    cy.request({
+      method: 'POST',
+      url: 'http://localhost:3000/',
+      body: {
+        operationName: 'AddTodo',
+        query: `
+          mutation AddTodo($title: String!, $completed: Boolean!) {
+            createTodo(title: $title, completed: $completed) {
+              id
+            }
+          }
+        `,
+        variables: {
+          title: item.title,
+          completed: item.completed,
+        },
+      },
+    })
+  })
 }
