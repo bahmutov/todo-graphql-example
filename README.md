@@ -1,4 +1,4 @@
-# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-8.5.0-brightgreen)
+# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-8.6.0-brightgreen)
 [![ci status][gh image]][gh url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app]
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
