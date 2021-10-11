@@ -15,7 +15,9 @@ describe('Adding header', () => {
     ).as('posted')
   })
 
-  it('intercepts operations using header added above', () => {
+  // https://github.com/cypress-io/cypress/issues/18436
+  // SKIP: intercept by matching a header added by the middleware does not work
+  it.skip('intercepts operations using header added above', () => {
     cy.intercept({
       method: 'POST',
       url: '/',
