@@ -4,11 +4,23 @@
 // https://github.com/bahmutov/cypress-each
 import 'cypress-each'
 
+// adds the "cy.api" command
+// https://github.com/bahmutov/cy-api
+import '@bahmutov/cy-api/support'
+
 import { data } from '../fixtures/three.json'
 import { deleteAll } from './utils'
 
 describe('Creates each item', () => {
   beforeEach(deleteAll)
+
+  beforeEach(() => {
+    // visit the blank page
+    // to better see the API requests and responses
+    cy.window().then((win) => {
+      win.location.href = 'about:blank'
+    })
+  })
 
   const titles = Cypress._.map(data.allTodos, 'title')
   const items = Cypress._.zip(titles, data.allTodos)
@@ -16,7 +28,7 @@ describe('Creates each item', () => {
   // @ts-ignore
   it.each(items)('creates an item "%s"', (title, item) => {
     // create the item using a network call
-    cy.request({
+    cy.api({
       method: 'POST',
       url: 'http://localhost:3000/',
       body: {

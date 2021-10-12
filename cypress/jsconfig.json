@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["cypress"],
+    "types": ["cypress", "@bahmutov/cy-api"],
     "resolveJsonModule": true
   }
 }
