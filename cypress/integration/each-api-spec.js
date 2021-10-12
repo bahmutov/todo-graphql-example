@@ -25,30 +25,40 @@ describe('Creates each item', () => {
   const titles = Cypress._.map(data.allTodos, 'title')
   const items = Cypress._.zip(titles, data.allTodos)
 
-  // @ts-ignore
-  it.each(items)('creates an item "%s"', (title, item) => {
-    // create the item using a network call
-    cy.api({
-      method: 'POST',
-      url: 'http://localhost:3000/',
-      body: {
-        operationName: 'AddTodo',
-        query: `
+  /**
+   * @typedef {Object} Item
+   * @property {string} title
+   * @property {boolean} completed
+   */
+
+  it.each(items)(
+    'creates an item "%s"',
+    /** @param {string} title */
+    /** @param {Item} item */
+    (title, item) => {
+      // create the item using a network call
+      cy.api({
+        method: 'POST',
+        url: 'http://localhost:3000/',
+        body: {
+          operationName: 'AddTodo',
+          query: `
           mutation AddTodo($title: String!, $completed: Boolean!) {
             createTodo(title: $title, completed: $completed) {
               id
             }
           }
         `,
-        variables: {
-          title: item.title,
-          completed: item.completed,
+          variables: {
+            title: item.title,
+            completed: item.completed,
+          },
         },
-      },
-    })
-    // visit the page and check the item is present
-    cy.visit('/')
-    const classAssertion = item.completed ? 'have.class' : 'not.have.class'
-    cy.contains('.todo', item.title).should(classAssertion, 'completed')
-  })
+      })
+      // visit the page and check the item is present
+      cy.visit('/')
+      const classAssertion = item.completed ? 'have.class' : 'not.have.class'
+      cy.contains('.todo', item.title).should(classAssertion, 'completed')
+    },
+  )
 })
