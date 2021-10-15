@@ -4,7 +4,8 @@
 // https://github.com/bahmutov/cypress-each
 import 'cypress-each'
 
-describe('visible elements', () => {
+// just for demo, see the split specs in the folder "visible-spec" instead
+describe.skip('visible elements', () => {
   // simulate creating lots of tests by using the same selectors
   const selectors = [
     'header',

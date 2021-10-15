@@ -13,3 +13,7 @@ jobs:
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
+          record: true
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
