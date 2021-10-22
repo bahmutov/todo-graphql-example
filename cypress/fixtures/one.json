@@ -1,0 +1,12 @@
+{
+  "data": {
+    "allTodos": [
+      {
+        "id": "1",
+        "title": "use GraphQL",
+        "completed": true,
+        "__typename": "Todo"
+      }
+    ]
+  }
+}
