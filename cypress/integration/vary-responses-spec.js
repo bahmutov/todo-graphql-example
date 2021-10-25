@@ -47,18 +47,18 @@ describe('TodoMVC', () => {
     // and a different fixture is used
     cy.visit('/')
     cy.wait('@first')
-    cy.get('.todo').should('not.exist').wait(1000)
+    cy.get('.todo').should('not.exist').wait(3000)
 
     cy.reload()
     cy.wait('@second')
-    cy.get('.todo').should('have.length', 1).wait(1000)
+    cy.get('.todo').should('have.length', 1).wait(3000)
 
     cy.reload()
     cy.wait('@third')
-    cy.get('.todo').should('have.length', 2).wait(1000)
+    cy.get('.todo').should('have.length', 2).wait(3000)
 
     cy.reload()
     cy.wait('@fourth')
-    cy.get('.todo').should('have.length', 3).wait(1000)
+    cy.get('.todo').should('have.length', 3).wait(3000)
   })
 })
