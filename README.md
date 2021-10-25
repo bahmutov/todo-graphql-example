@@ -1,4 +1,4 @@
-# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-8.6.0-brightgreen)
+# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-8.7.0-brightgreen)
 [![ci status][gh image]][gh url] [![badges status][badges image]][badges url] [![renovate-app badge][renovate-badge]][renovate-app] [![todo-graphql-example](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/ahwxj4/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/ahwxj4/runs)
 
 ## Blog posts
