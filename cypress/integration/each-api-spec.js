@@ -1,9 +1,5 @@
 // @ts-check
 
-// adds "describe.each" and "it.each" helpers
-// https://github.com/bahmutov/cypress-each
-import 'cypress-each'
-
 // adds the "cy.api" command
 // https://github.com/bahmutov/cy-api
 import '@bahmutov/cy-api/support'
