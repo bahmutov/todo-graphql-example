@@ -1,7 +1,6 @@
 {
   "baseUrl": "http://localhost:1234",
   "testFiles": "**/*spec*.*",
-  "pluginsFile": false,
   "video": false,
   "projectId": "ahwxj4"
 }
