@@ -1,6 +1,6 @@
 // @ts-check
 
-describe('TodoMVC GraphQL client', () => {
+describe('TodoMVC GraphQL client', { tags: '@client' }, () => {
   it('adds a todo', () => {
     // set up the spy on "client.mutate" method
     cy.visit('/')

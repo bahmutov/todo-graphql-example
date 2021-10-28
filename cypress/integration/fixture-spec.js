@@ -1,5 +1,5 @@
 // @ts-check
-describe('TodoMVC', () => {
+describe('TodoMVC', { tags: '@intercept' }, () => {
   it('starts with N items', () => {
     cy.intercept(
       {

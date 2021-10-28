@@ -1,7 +1,7 @@
 // @ts-check
 import { deleteAll } from './utils'
 
-describe('Delete items', () => {
+describe('Delete items', { tags: '@intercept' }, () => {
   beforeEach(deleteAll)
 
   it('deletes all items by making GraphQL calls', () => {
