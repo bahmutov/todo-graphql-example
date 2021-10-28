@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
 import { todos } from '../../db'
 
-describe('GraphQL client', () => {
+describe('GraphQL client', { tags: '@client' }, () => {
   // make individual GraphQL calls using the app's own client
 
   it('gets all todos (id, title)', () => {

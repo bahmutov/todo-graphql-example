@@ -25,4 +25,49 @@ jobs:
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
-          env: grepTags=dynamic,grepFilterSpecs=true
+          env: grepTags=@dynamic,grepFilterSpecs=true
+
+  tag-visible:
+    runs-on: ubuntu-20.04
+    needs: install
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepTags=@visible,grepFilterSpecs=true
+
+  tag-client:
+    runs-on: ubuntu-20.04
+    needs: install
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepTags=@client,grepFilterSpecs=true
+
+  tag-intercept:
+    runs-on: ubuntu-20.04
+    needs: install
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepTags=@intercept,grepFilterSpecs=true

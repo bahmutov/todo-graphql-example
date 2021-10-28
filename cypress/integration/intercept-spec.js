@@ -1,6 +1,6 @@
 // @ts-check
 // note: previously used cy.route2 command is officially cy.intercept
-describe('TodoMVC with GraphQL cy.intercept', () => {
+describe('TodoMVC with GraphQL cy.intercept', { tags: '@intercept' }, () => {
   const allTodos = [
     { id: '1', title: 'use GraphQL', completed: false, __typename: 'Todo' },
     {
