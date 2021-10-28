@@ -71,3 +71,18 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepTags=@intercept,grepFilterSpecs=true
+
+  untagged:
+    runs-on: ubuntu-20.04
+    needs: [tag-intercept, tag-client, tag-visible, tag-dynamic]
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepUntagged=true
