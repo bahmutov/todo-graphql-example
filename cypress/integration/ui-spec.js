@@ -1,6 +1,20 @@
 // @ts-check
+import { deleteAll, createItems } from './utils'
 
 describe('TodoMVC', () => {
+  beforeEach(() => {
+    // make sure we start with several todos
+    deleteAll()
+    const randomTodos = Cypress._.range(0, Cypress._.random(5, 10)).map((k) => {
+      return {
+        title: `Todo ${k}`,
+        completed: Cypress._.sample([true, false]),
+      }
+    })
+    cy.log(`creating ${randomTodos.length} todos`)
+    createItems(randomTodos)
+  })
+
   it('toggles todo', () => {
     // this test looks at the page UI
     // to determine how the class changes
