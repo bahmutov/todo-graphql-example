@@ -1,0 +1,28 @@
+name: tags
+on: push
+jobs:
+  install:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out code 🛎
+        uses: actions/checkout@v2
+      - name: Install dependencies 📦
+        uses: cypress-io/github-action@v2
+        with:
+          # just perform install
+          runTests: false
+
+  tag-dynamic:
+    runs-on: ubuntu-20.04
+    needs: install
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepTags=dynamic,grepFilterSpecs=true
