@@ -8,7 +8,7 @@ import { deleteAll, createItems } from './utils'
 // read the blog post https://glebbahmutov.com/blog/dynamic-tests-from-fixture/
 // watch the video "Dynamic Tests From Cypress.io Fixture File" https://youtu.be/EXVwvJrUGJ8
 
-describe('Creates each item', () => {
+describe('Creates each item', { tags: '@dynamic' }, () => {
   beforeEach(deleteAll)
 
   // use the imported items to create each item
