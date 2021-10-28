@@ -19,7 +19,7 @@
   "dependencies": {
     "@apollo/client": "3.4.16",
     "classnames": "2.3.1",
-    "graphql": "15.7.1",
+    "graphql": "16.0.0",
     "json-graphql-server": "2.2.3",
     "react": "17.0.2",
     "react-apollo": "3.1.5",
