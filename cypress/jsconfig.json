@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["support/index.d.ts", "cypress", "@bahmutov/cy-api", "cypress-each"],
+    "types": ["./support", "cypress", "@bahmutov/cy-api", "cypress-each"],
     "resolveJsonModule": true
   }
 }
