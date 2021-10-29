@@ -146,6 +146,10 @@ To start the application and run headless Cypress tests
 $ npm run local
 ```
 
+## Types
+
+Look at [cypress/jsconfig.json](./cypress/jsconfig.json) that loads all 3rd party types, and includes the link to [cypress/support/index.d.ts](./cypress/support/index.d.ts) where I describe the type for custom command `cy.createTodos` defined in [cypress/support/index.js](./cypress/support/index.js).
+
 ## About me
 
 - [@bahmutov](https://twitter.com/bahmutov)
