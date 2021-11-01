@@ -1,5 +1,6 @@
 // @ts-check
 import { deleteAll, createItems } from './utils'
+// https://github.com/bahmutov/cypress-highlight
 import { highlight } from 'cypress-highlight'
 const { range, random, sample } = Cypress._
 
