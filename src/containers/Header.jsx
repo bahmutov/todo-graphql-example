@@ -2,7 +2,7 @@ import React from 'react'
 import TodoTextInput from './TodoTextInput'
 
 const Header = ({ addTodo }) => (
-  <header className="header">
+  <header className="header" data-cy="header">
     <h1>todos</h1>
     <TodoTextInput
       newTodo
