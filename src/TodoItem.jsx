@@ -48,10 +48,12 @@ const TodoItem = (props) => {
           className="toggle"
           checked={props.todo.completed}
           onChange={() => completeTodo(props.todo.id)}
+          data-cy="toggle"
         />
         <label>{`${props.todo.title}`}</label>
         <button
           className="destroy"
+          data-cy="destroy"
           onClick={() => {
             deleteTodo({
               variables: {
