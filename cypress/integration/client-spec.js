@@ -2,9 +2,15 @@
 import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
 import { todos } from '../../db'
+import { deleteAll, createItems } from './utils'
 
+// make individual GraphQL calls using the app's own client
 describe('GraphQL client', { tags: '@client' }, () => {
-  // make individual GraphQL calls using the app's own client
+  before(() => {
+    deleteAll()
+    // @ts-ignore
+    createItems(todos)
+  })
 
   it('gets all todos (id, title)', () => {
     const query = gql`
@@ -14,6 +20,7 @@ describe('GraphQL client', { tags: '@client' }, () => {
           # fields to pick
           id
           title
+          completed
         }
       }
     `
@@ -26,18 +33,19 @@ describe('GraphQL client', { tags: '@client' }, () => {
       .its('data.allTodos')
       .should('have.length.gte', 2)
       .its('0')
-      .should('deep.equal', {
-        id: todos[0].id,
+      .should('deep.include', {
         title: todos[0].title,
+        completed: todos[0].completed,
         __typename: 'Todo',
       })
+      .and('have.property', 'id')
   })
 
   it('gets second todo', () => {
     const query = gql`
       query getTodo {
         # operation name
-        Todo(id: ${todos[1].id}) {
+        Todo(id: 1) {
           # fields to pick
           id
           title
@@ -52,8 +60,11 @@ describe('GraphQL client', { tags: '@client' }, () => {
       }),
     )
       .its('data.Todo')
-      .should('deep.equal', {
+      .should('deep.include', {
         ...todos[1],
+        // ID will be dynamically generated
+        // after deleting all existing todos
+        id: '1',
         __typename: 'Todo',
       })
   })
@@ -74,7 +85,7 @@ describe('GraphQL client', { tags: '@client' }, () => {
       client.mutate({
         mutation: m,
         variables: {
-          id: todos[0].id,
+          id: '0',
           completed: true,
         },
       }),
@@ -82,6 +93,7 @@ describe('GraphQL client', { tags: '@client' }, () => {
       .its('data.updateTodo')
       .should('deep.equal', {
         ...todos[0],
+        id: '0',
         completed: true,
         __typename: 'Todo',
       })
