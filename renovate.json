@@ -6,5 +6,18 @@
   },
   "schedule": ["every weekend"],
   "masterIssue": true,
-  "labels": ["type: dependencies", "renovate"]
+  "labels": ["type: dependencies", "renovate"],
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "excludePackagePatterns": [
+        "cypress",
+        "cypress-grep",
+        "cypress-data-session",
+        "@bahmutov/cy-api",
+        "cypress-highlight"
+      ],
+      "enabled": false
+    }
+  ]
 }
