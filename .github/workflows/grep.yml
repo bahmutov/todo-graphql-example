@@ -8,6 +8,9 @@ on:
       grepTags:
         description: Test tags
         required: false
+      burn:
+        description: Number of times to repeat the tests
+        required: false
 jobs:
   grep:
     runs-on: ubuntu-20.04
@@ -21,9 +24,9 @@ jobs:
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
-          env: grepTags=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }}
+          env: grep=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }},burn=${{ github.event.inputs.burn }}
           record: true
-          group: 'grep=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }}'
+          group: 'grep=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }},burn=${{ github.event.inputs.burn }}'
           tag: grep
         env:
           # pass the Dashboard record key as an environment variable
