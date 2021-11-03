@@ -26,6 +26,12 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepTags=@dynamic,grepFilterSpecs=true
+          record: true
+          group: '1 - @dynamic'
+          tag: tags
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
   tag-visible:
     runs-on: ubuntu-20.04
@@ -41,6 +47,11 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepTags=@visible,grepFilterSpecs=true
+          record: true
+          group: '2 - @visible'
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
   tag-client:
     runs-on: ubuntu-20.04
@@ -56,6 +67,11 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepTags=@client,grepFilterSpecs=true
+          record: true
+          group: '3 - @client'
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
   tag-intercept:
     runs-on: ubuntu-20.04
@@ -71,6 +87,11 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepTags=@intercept,grepFilterSpecs=true
+          record: true
+          group: '4 - @intercept'
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
 
   untagged:
     runs-on: ubuntu-20.04
@@ -86,3 +107,8 @@ jobs:
           start: npm run dev
           wait-on: 'http://localhost:1234'
           env: grepUntagged=true
+          record: true
+          group: '5 - untagged'
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
