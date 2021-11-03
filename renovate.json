@@ -1,18 +1,10 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "automerge": true,
   "major": {
     "automerge": false
   },
-  "schedule": [
-    "after 10pm and before 5am on every weekday",
-    "every weekend"
-  ],
+  "schedule": ["every weekend"],
   "masterIssue": true,
-  "labels": [
-    "type: dependencies",
-    "renovate"
-  ]
+  "labels": ["type: dependencies", "renovate"]
 }
