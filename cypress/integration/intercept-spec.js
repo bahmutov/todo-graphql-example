@@ -1,6 +1,6 @@
 // @ts-check
 // note: previously used cy.route2 command is officially cy.intercept
-describe('TodoMVC with GraphQL cy.intercept', { tags: '@intercept' }, () => {
+describe('TodoMVC with GraphQL cy.intercept', () => {
   const allTodos = [
     { id: '1', title: 'use GraphQL', completed: false, __typename: 'Todo' },
     {
@@ -70,7 +70,7 @@ describe('TodoMVC with GraphQL cy.intercept', { tags: '@intercept' }, () => {
     cy.get('.todo-list li').first().should('have.class', 'completed')
   })
 
-  it('stubs todos query', () => {
+  it('stubs todos query', { tags: '@intercept' }, () => {
     // stub ALL GraphQL calls the same way
     cy.intercept(
       {
@@ -111,7 +111,7 @@ describe('TodoMVC with GraphQL cy.intercept', { tags: '@intercept' }, () => {
       })
   })
 
-  it('shows loading indicator', () => {
+  it('shows loading indicator', { tags: '@intercept' }, () => {
     // stub ALL GraphQL calls the same way
     cy.intercept(
       {
@@ -218,7 +218,7 @@ describe('TodoMVC with GraphQL cy.intercept', { tags: '@intercept' }, () => {
     cy.contains('.todo-list li', randomTitle)
   })
 
-  it('spies on adding todos', () => {
+  it('spies on adding todos', { tags: '@intercept' }, () => {
     let todoResponse
 
     cy.intercept(
