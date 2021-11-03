@@ -4,6 +4,7 @@
   "video": false,
   "projectId": "ahwxj4",
   "env": {
-    "grepFilterSpecs": true
+    "grepFilterSpecs": true,
+    "grepOmitFiltered": true
   }
 }
