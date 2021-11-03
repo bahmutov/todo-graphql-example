@@ -6,6 +6,7 @@
 - [Make GraphQL Calls From Cypress Tests](https://glebbahmutov.com/blog/request-graphql/)
 - [Dynamic API Tests Using Cypress-Each Plugin](https://glebbahmutov.com/blog/dynamic-api-tests-using-cypress-each/)
 - [Refactor Tests To Be Independent And Fast Using Cypress-Each Plugin](https://glebbahmutov.com/blog/refactor-using-each/)
+- [Faster test execution with cypress-grep](https://glebbahmutov.com/blog/cypress-grep-filters/)
 
 Read [Smart GraphQL Stubbing in Cypress](https://glebbahmutov.com/blog/smart-graphql-stubbing/). Note that with the addition of [cy.intercept](https://on.cypress.io/intercept) all extra hacks became unnecessary.
 
