@@ -1,0 +1,30 @@
+name: grep
+on:
+  workflow_dispatch:
+    inputs:
+      grep:
+        description: Part of the test title
+        required: false
+      grepTags:
+        description: Test tags
+        required: false
+jobs:
+  grep:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v2
+
+      # https://github.com/cypress-io/github-action
+      - name: Run filtered tests 🧪
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:1234'
+          env: grepTags=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }}
+          record: true
+          group: 'grep=${{ github.event.inputs.grep }},grepTags=${{ github.event.inputs.grepTags }}'
+          tag: grep
+        env:
+          # pass the Dashboard record key as an environment variable
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
