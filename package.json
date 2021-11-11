@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "start": "json-graphql-server db.js",
-    "app": "parcel serve src/index.html",
+    "app": "parcel src/index.html",
     "server": "npm start & npm run app",
     "dev": "start-test server 1234 cy:open",
     "local": "start-test server 1234 cy:run",
@@ -33,7 +33,7 @@
     "cypress-each": "1.6.0",
     "cypress-grep": "2.10.1",
     "cypress-highlight": "1.2.0",
-    "parcel-bundler": "1.12.5",
+    "parcel": "2.0.1",
     "prettier": "2.4.1",
     "start-server-and-test": "1.14.0"
   }

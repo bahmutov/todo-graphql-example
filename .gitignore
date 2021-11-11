@@ -3,3 +3,4 @@ dist
 .cache
 cypress/screenshots
 cypress/videos
+.parcel-cache/
