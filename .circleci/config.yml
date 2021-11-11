@@ -25,6 +25,7 @@ workflows:
           requires:
             - cypress/install
           executor: with-chrome
+          browser: chrome
           start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
           # run all tests using the Chrome browser
