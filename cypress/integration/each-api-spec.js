@@ -5,7 +5,7 @@
 import '@bahmutov/cy-api/support'
 
 import { data } from '../fixtures/three.json'
-import { deleteAll } from './utils'
+import { deleteAll } from './utils-using-client'
 
 describe('Creates each item', () => {
   beforeEach(deleteAll)
