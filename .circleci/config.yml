@@ -21,12 +21,11 @@ workflows:
       # first get the source code and install npm dependencies
       - cypress/install:
           executor: with-chrome
-          build: 'npm run build'
       - cypress/run:
           requires:
             - cypress/install
           executor: with-chrome
-          start: 'npm run server:ci' # start server before running tests
+          start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
           # run all tests using the Chrome browser
           # installed in the executor. I have noticed that Chrome
