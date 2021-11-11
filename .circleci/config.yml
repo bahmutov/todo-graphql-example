@@ -10,9 +10,10 @@ workflows:
       - cypress/run:
           requires:
             - cypress/install
+          start: 'npm run dev' # start server before running tests
+          wait-on: 'http://localhost:1234'
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
           parallelism: 1 # how many CircleCI machines to use
           group: 'all tests' # name this group "all tests" on the dashboard
-          start: 'npm start' # start server before running tests
-          wait-on: 'http://localhost:1234'
+          tag: 'circleci'
