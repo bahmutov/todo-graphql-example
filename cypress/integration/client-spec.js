@@ -2,7 +2,8 @@
 import { gql } from '@apollo/client'
 import { client } from '../../src/graphql-client'
 import { todos } from '../../db'
-import { deleteAll, createItems } from './utils'
+import { createItems } from './utils'
+import { deleteAll } from './utils-using-client'
 
 // make individual GraphQL calls using the app's own client
 describe('GraphQL client', { tags: '@client' }, () => {

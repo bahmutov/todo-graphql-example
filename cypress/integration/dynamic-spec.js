@@ -3,7 +3,8 @@
 // Type check works for JSON module
 // because in "jsconfig.json" file I use "resolveJsonModule: true"
 import { data } from '../fixtures/three.json'
-import { deleteAll, createItems } from './utils'
+import { createItems } from './utils'
+import { deleteAll } from './utils-using-client'
 
 // read the blog post https://glebbahmutov.com/blog/dynamic-tests-from-fixture/
 // watch the video "Dynamic Tests From Cypress.io Fixture File" https://youtu.be/EXVwvJrUGJ8

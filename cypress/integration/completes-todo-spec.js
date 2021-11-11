@@ -2,7 +2,8 @@
 
 import 'cypress-data-session'
 import { data } from '../fixtures/three.json'
-import { deleteAll, createItems, getTodos } from './utils'
+import { createItems } from './utils'
+import { deleteAll, getTodos } from './utils-using-client'
 
 describe('completes todo', () => {
   beforeEach(() => {

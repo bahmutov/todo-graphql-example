@@ -1,5 +1,5 @@
 // @ts-check
-import { deleteAll } from './utils'
+import { deleteAll } from './utils-using-client'
 
 describe('Delete items', { tags: '@intercept' }, () => {
   beforeEach(deleteAll)

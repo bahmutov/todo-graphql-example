@@ -1,5 +1,6 @@
 // @ts-check
-import { deleteAll, createItems } from './utils'
+import { createItems } from './utils'
+import { deleteAll } from './utils-using-client'
 
 Cypress.Commands.add('createTodos', (titles) => {
   const items = titles.map((title) => ({
