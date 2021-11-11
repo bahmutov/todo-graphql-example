@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@bahmutov/cy-api": "1.6.0",
-    "cypress": "9.0.0",
+    "cypress": "8.7.0",
     "cypress-data-session": "1.12.0",
     "cypress-each": "1.6.0",
     "cypress-grep": "2.10.1",
