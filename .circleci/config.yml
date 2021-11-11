@@ -5,6 +5,8 @@ orbs:
 executors:
   with-chrome:
     docker:
+      # this Docker image is built by the Cypress team
+      # https://github.com/cypress-io/cypress-docker-images
       - image: 'cypress/browsers:node16.5.0-chrome94-ff93'
 workflows:
   build:
@@ -18,6 +20,8 @@ workflows:
           executor: with-chrome
           start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
+          # run all tests using the Chrome browser
+          # installed in the executor
           browser: chrome
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
