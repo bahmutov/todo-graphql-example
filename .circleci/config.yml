@@ -10,7 +10,7 @@ workflows:
       - cypress/run:
           requires:
             - cypress/install
-          start: 'npm run dev' # start server before running tests
+          start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
