@@ -1,5 +1,13 @@
 // @ts-check
-import { deleteAll } from './utils'
+import { deleteAll, createItems } from './utils'
+
+Cypress.Commands.add('createTodos', (titles) => {
+  const items = titles.map((title) => ({
+    title,
+    completed: false,
+  }))
+  return createItems(items)
+})
 
 describe('Using a custom command', () => {
   it('creates todos', () => {
