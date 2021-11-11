@@ -28,7 +28,7 @@ workflows:
           # run all tests using the Chrome browser
           # installed in the executor. I have noticed that Chrome
           # does not crash when running tests for this application
-          browser: chrome
+          # browser: chrome
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
           parallelism: << pipeline.parameters.PARALLEL_TESTS >>
