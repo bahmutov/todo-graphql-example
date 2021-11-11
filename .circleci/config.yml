@@ -2,6 +2,11 @@ version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
   cypress: cypress-io/cypress@1
+parameters:
+  # how many test machines to run in parallel?
+  PARALLEL_TESTS:
+    type: integer
+    default: 2
 executors:
   with-chrome:
     docker:
@@ -21,10 +26,11 @@ workflows:
           start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
           # run all tests using the Chrome browser
-          # installed in the executor
+          # installed in the executor. I have noticed that Chrome
+          # does not crash when running tests for this application
           browser: chrome
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
-          parallelism: 1 # how many CircleCI machines to use
+          parallelism: << pipeline.parameters.PARALLEL_TESTS >>
           group: 'all tests' # name this group "all tests" on the dashboard
           tags: 'circleci'
