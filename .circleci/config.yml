@@ -2,16 +2,23 @@ version: 2.1
 orbs:
   # https://github.com/cypress-io/circleci-orb
   cypress: cypress-io/cypress@1
+executors:
+  with-chrome:
+    docker:
+      - image: 'cypress/browsers:node16.5.0-chrome94-ff93'
 workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
-      - cypress/install
+      - cypress/install:
+          executor: with-chrome
       - cypress/run:
           requires:
             - cypress/install
+          executor: with-chrome
           start: 'npm run server' # start server before running tests
           wait-on: 'http://localhost:1234'
+          browser: chrome
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
           parallelism: 1 # how many CircleCI machines to use
