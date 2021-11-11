@@ -1,5 +1,3 @@
-// @ts-check
-
 // just for demo, see the split specs in the folder "visible-spec" instead
 describe.skip('visible elements', () => {
   // simulate creating lots of tests by using the same selectors
