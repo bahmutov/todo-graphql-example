@@ -17,7 +17,7 @@
   "author": "Gleb Bahmutov <gleb.bahmutov@gmail.com> (https://glebbahmutov.com/)",
   "license": "ISC",
   "dependencies": {
-    "@apollo/client": "3.4.16",
+    "@apollo/client": "3.5.2",
     "classnames": "2.3.1",
     "graphql": "16.0.1",
     "json-graphql-server": "2.2.3",
