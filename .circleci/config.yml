@@ -7,31 +7,30 @@ parameters:
   PARALLEL_TESTS:
     type: integer
     default: 2
+# https://circleci.com/docs/2.0/executor-intro/
 executors:
-  with-chrome:
+  # create our own executor with Cypress dependencies
+  # and specific resource class
+  test-container:
     # https://circleci.com/docs/2.0/configuration-reference/#resourceclass
     resource_class: medium+
     docker:
       # this Docker image is built by the Cypress team
       # https://github.com/cypress-io/cypress-docker-images
-      - image: 'cypress/browsers:node16.5.0-chrome94-ff93'
+      - image: 'cypress/base:node16.13.0'
 workflows:
   build:
     jobs:
       # first get the source code and install npm dependencies
       - cypress/install:
-          executor: with-chrome
+          executor: test-container
           build: 'npm run build'
       - cypress/run:
           requires:
             - cypress/install
-          executor: with-chrome
+          executor: test-container
           start: 'npm run server:ci' # start server before running tests
           wait-on: 'http://localhost:1234'
-          # run all tests using the Chrome browser
-          # installed in the executor. I have noticed that Chrome
-          # does not crash when running tests for this application
-          # browser: chrome
           record: true # record results on Cypress Dashboard
           parallel: true # split all specs across machines
           parallelism: << pipeline.parameters.PARALLEL_TESTS >>
