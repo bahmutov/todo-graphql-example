@@ -15,9 +15,9 @@ executors:
     # https://circleci.com/docs/2.0/configuration-reference/#resourceclass
     resource_class: medium+
     docker:
-      # this Docker image is built by the Cypress team
+      # this Docker image is built by the Cypress team and is tagged with Node version
       # https://github.com/cypress-io/cypress-docker-images
-      - image: 'cypress/base:node16.13.0'
+      - image: 'cypress/base:16.13.0'
 workflows:
   build:
     jobs:
