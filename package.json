@@ -35,7 +35,7 @@
     "cypress": "9.0.0",
     "cypress-data-session": "1.12.0",
     "cypress-each": "1.6.0",
-    "cypress-grep": "2.10.1",
+    "cypress-grep": "2.10.2",
     "cypress-highlight": "1.2.0",
     "parcel-bundler": "1.12.5",
     "prettier": "2.4.1",
