@@ -3,6 +3,10 @@ module.exports = (on, config) => {
   // https://github.com/bahmutov/cypress-grep
   require('cypress-grep/src/plugin')(config)
 
+  // shared data across specs
+  // https://github.com/bahmutov/cypress-data-session
+  require('cypress-data-session/src/plugin')(on, config)
+
   function getUTC() {
     const now = new Date()
     return now.toISOString()
