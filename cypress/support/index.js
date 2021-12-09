@@ -12,3 +12,11 @@ beforeEach(() => {
 afterEach(() => {
   cy.task('afterTest', Cypress.currentTest.title)
 })
+
+// https://on.cypress.io/catalog-of-events
+Cypress.on('fail', (err) => {
+  console.error(err)
+  const at = new Date().toISOString()
+  err.message = at + '\n' + err.message
+  throw err
+})
