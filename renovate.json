@@ -15,7 +15,8 @@
         "cypress-grep",
         "cypress-data-session",
         "@bahmutov/cy-api",
-        "cypress-highlight"
+        "cypress-highlight",
+        "cypress-timestamps"
       ],
       "enabled": false
     }
