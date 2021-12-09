@@ -6,5 +6,6 @@
   "env": {
     "grepFilterSpecs": true,
     "grepOmitFiltered": true
-  }
+  },
+  "screenshotOnRunFailure": true
 }

@@ -24,6 +24,16 @@ module.exports = (on, config) => {
     },
   })
 
+  // https://on.cypress.io/after-screenshot-api
+  on('after:screenshot', ({ testFailure, takenAt }) => {
+    if (testFailure) {
+      // this is a screenshot taken on test failure
+      // not a screenshot from the cy.screenshot command
+      // takenAt is a UTC string
+      console.log(`xxx ${takenAt} error`)
+    }
+  })
+
   // make sure to return the config object
   // as it might have been modified by the plugin
   return config
