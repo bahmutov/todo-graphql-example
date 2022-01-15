@@ -1,4 +1,4 @@
-# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-9.2.0-brightgreen)
+# todo-graphql-example ![cypress version](https://img.shields.io/badge/cypress-9.2.1-brightgreen)
 [![ci status][gh image]][gh url] [![badges status][badges image]][badges url] [![tags](https://github.com/bahmutov/todo-graphql-example/actions/workflows/tags.yml/badge.svg?branch=master&event=push)](https://github.com/bahmutov/todo-graphql-example/actions/workflows/tags.yml) [![renovate-app badge][renovate-badge]][renovate-app] [![todo-graphql-example](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/count/ahwxj4/master&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/ahwxj4/runs) [![CircleCI](https://circleci.com/gh/bahmutov/todo-graphql-example/tree/master.svg?style=svg)](https://circleci.com/gh/bahmutov/todo-graphql-example/tree/master)
 
 ## Blog posts
