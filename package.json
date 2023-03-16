@@ -37,7 +37,7 @@
     "cypress-each": "1.10.0",
     "cypress-grep": "2.14.0",
     "cypress-highlight": "1.2.0",
-    "cypress-timestamps": "1.0.2",
+    "cypress-timestamps": "1.2.3",
     "parcel-bundler": "1.12.5",
     "prettier": "2.4.1",
     "serve": "13.0.2",
