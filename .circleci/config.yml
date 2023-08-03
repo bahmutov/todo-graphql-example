@@ -17,7 +17,7 @@ executors:
     docker:
       # this Docker image is built by the Cypress team and is tagged with Node version
       # https://github.com/cypress-io/cypress-docker-images
-      - image: 'cypress/base:16.14.0'
+      - image: 'cypress/base:18.16.1'
 workflows:
   build:
     jobs:
