@@ -34,7 +34,7 @@
     "@bahmutov/cy-api": "1.6.2",
     "cypress": "9.7.0",
     "cypress-data-session": "1.15.1",
-    "cypress-each": "1.10.0",
+    "cypress-each": "1.14.0",
     "cypress-grep": "2.14.0",
     "cypress-highlight": "1.2.0",
     "cypress-timestamps": "1.0.2",
