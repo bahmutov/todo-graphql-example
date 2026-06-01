@@ -7,7 +7,7 @@ jobs:
       - name: Check out code 🛎
         uses: actions/checkout@v2
       - name: Install dependencies 📦
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           # just perform install
           runTests: false
@@ -21,7 +21,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
@@ -42,7 +42,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
@@ -63,7 +63,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
@@ -84,7 +84,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
@@ -105,7 +105,7 @@ jobs:
 
       # https://github.com/cypress-io/github-action
       - name: Run tests 🧪
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v7.4.0
         with:
           start: npm run dev
           wait-on: 'http://localhost:1234'
